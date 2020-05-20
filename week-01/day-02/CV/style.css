@@ -1,0 +1,66 @@
+.tstyle{
+    padding-left: 19%;
+    padding-right: 19%;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #222;
+    font-size: 110%;
+    list-style-type: square;
+    
+}
+
+.hbckgrnd {
+    background-image: url(asset/anakin.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    padding-top: 15%;
+    padding-bottom: 5%;
+    padding-left: 19%;
+    font-family: 'Abril Fatface', cursive;
+
+}
+
+.innertext {
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    line-height: 180%;
+
+}
+h1 {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.fontstyle {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 130%;
+}
+
+.tht {
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 230%;
+    margin-bottom: -1%;
+    color: #222;
+    
+}
+
+.dht {
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 450%;
+    margin-top: -1%;
+    margin-bottom: 0px;
+    color: #222;
+}
+
+.boxesst {
+    text-align: center;
+    font-size: 50px;
+    font-family: 'Abril Fatface', cursive; 
+    background-color: rgb(71, 71, 71);
+    color: white;
+    /*padding-left: 5%;*/
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+font-family: 'Merriweather', serif;

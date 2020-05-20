@@ -1,0 +1,30 @@
+.bckgrnd {
+    background-color: darkgrey; 
+    margin: 0px;
+    font-family: Arial, Helvetica, sans-serif
+}
+.hbckgrnd {
+    background-color: dimgrey;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.bopad {
+    padding-left: 10%; 
+    padding-right: 10%;
+}
+.element {
+    width: 100%;
+    height: 100px;
+    }
+
+#post {
+    background-color: darkgrey;
+    padding: 5px;
+    padding-top: 0px;
+    margin-bottom: 15px;
+    outline: 1px solid black;
+}
+
+.font {
+    font-family: Arial, Helvetica, sans-serif;
+}

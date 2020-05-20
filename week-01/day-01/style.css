@@ -1,0 +1,13 @@
+.background {background-image: url("topography.png");}
+#okraje {margin: 0px;}
+#logopozice {padding-top: 10px; padding-left: 10%; padding-bottom: 10px}
+.headerbckgcolor {background-color: #333333; pa}
+.headertext {color: #ff0099}
+#okraj {padding: 10%;}
+.odsazeninahoredole {padding-top: 50; padding-bottom: 30;}
+h1 {font-family: "Roboto Mono"; font-weight: bold; font-size: 350%; }
+h2 {font-family: "Roboto Mono"; font-weight: bold; font-size: 250%;}
+h3 {font-family: "Roboto Mono"; font-weight: bold; font-size: 200%;}
+.text1 {font-family: Georgia;}
+.text2 {font-family: consolas;}
+a {color: #ff0099}
