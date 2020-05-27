@@ -22,7 +22,7 @@ public class shoppingList {
             {
                 have = true;
             }
-            
+
         }
         System.out.println("Milk is: " + have);
 
