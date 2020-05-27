@@ -29,7 +29,7 @@ public class copyFile {
             Files.write(pathN2, contentOf2);
             System.out.println("true");
         }
-        catch (Exception e)                                            
+        catch (Exception e)
         {
             System.out.println("Writing unsuccesfull!");
         }

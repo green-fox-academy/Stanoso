@@ -20,7 +20,7 @@ public class writeSingleLine {
         }
         catch (Exception e)
         {
-            System.out.println("Unable to write file: my-newfile.txt");     
+            System.out.println("Unable to write file: my-newfile.txt");
         }
 
 
