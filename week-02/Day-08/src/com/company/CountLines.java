@@ -15,13 +15,13 @@ public class CountLines {
     }
 
 
-    public static void numLines(String name) {
-        try {
-            Path filePath = Paths.get("src/com/company/" + name);
-            List<String> lines = Files.readAllLines(filePath);
-            System.out.println(lines.size());
-        } catch (Exception e) {
-            System.out.println("0");                                         
+    public static void numLines(String name) {                                 
+        try {                                                                  
+            Path filePath = Paths.get("src/com/company/" + name);         
+            List<String> lines = Files.readAllLines(filePath);                 
+            System.out.println(lines.size());                                
+        } catch (Exception e) {                                                 // při chybě - exception
+            System.out.println("0");                                            // vytiskne 0
         }
 
     }
