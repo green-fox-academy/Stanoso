@@ -10,7 +10,7 @@ public class printEachLine {
     public static void main(String[] args)  {
 
         try {
-            Path filePath = Paths.get("src/com/company/my-file.txt");  // Nastaví do proměnné filePath cestu k souboru
+            Path filePath = Paths.get("src/com/company/my-file.txt");  
             List<String> lines = Files.readAllLines(filePath);
             for (String line : lines)
             {
