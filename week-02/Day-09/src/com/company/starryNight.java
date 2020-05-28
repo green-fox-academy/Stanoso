@@ -22,7 +22,7 @@ public class starryNight {
             graphics.setColor(starsColor[random.nextInt(starsColor.length)]);
             size = random.nextInt(4);
             graphics.fillRect(random.nextInt(320),random.nextInt(320),size,size);
-            size = random.
+
         }
 
     }
