@@ -24,7 +24,7 @@ public class linePlay {
             x2 += 20;
             y2 += 20;
         }
-        
+
 
     }
 
