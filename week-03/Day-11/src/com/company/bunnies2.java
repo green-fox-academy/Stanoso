@@ -5,7 +5,7 @@ import org.w3c.dom.ls.LSOutput;
 public class bunnies2 {
 
     public static void main(String[] args) {
-        System.out.println(bunniesEars2(4));
+        System.out.println(bunniesEars2(3));
     }
 
     public static int bunniesEars2(int n) {
