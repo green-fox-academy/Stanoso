@@ -16,7 +16,7 @@ public class SierpinskyCarpet {
 
 
         drawSq(graphics, x, y, size, 0);
-     
+
     }
 
     public static void drawSq(Graphics graphics, int x, int y, int size, int rep) {
