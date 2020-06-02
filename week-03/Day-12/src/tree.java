@@ -22,6 +22,7 @@ public class tree {
 
 
 
+
     }
 
     public static void drawBranch(Graphics graphics, int x, int y, int lenght, int ang, int rep) {
