@@ -1,5 +1,7 @@
 package BlogPost;
 
+import java.util.Date;
+
 public class main {
     public static void main(String[] args) {
         blogPost b1 = new blogPost("John Doe", "Lorem Ipsum", "2000.05.04");
