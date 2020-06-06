@@ -8,9 +8,13 @@ public class Pirates {
     private int alive; // 0 - dead, 1 - alive, 2 - passed out
     public String name;
     private boolean captain;
-    Random random = new Random();
+    Random random;
+    private final int ALIVE = 1;
+    private final int DEAD = 0;
+    private final int PASSOUT = 2;
 
     public Pirates(String name) {
+        this.random = new Random();
         this.name = name;
         this.alive = random.nextInt(2)+1;
         this.drunk = random.nextInt(5);
@@ -18,7 +22,7 @@ public class Pirates {
     }
 
     public void drinkSomeRum() {
-        if (this.alive == 0) {
+        if (this.alive == DEAD) {
             System.out.println(this.name + " is dead.");
         } else if (this.alive == 2) {
             System.out.println(this.name + " is passed out.");
@@ -50,8 +54,8 @@ public class Pirates {
         } else if (with.alive == 2) {
             System.out.println(this.name + " is passed out.");
         } else {
-            Random random = new Random();
-            int decide = random.nextInt(9);
+            //Random random = new Random();
+            int decide = this.random.nextInt(9);
             if (decide < 4) {
                 this.alive = 0;
                 System.out.println(this.name + " is dead.");

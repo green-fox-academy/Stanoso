@@ -15,13 +15,19 @@ public class Main {
 
         Pokemon wildPokemon = new Pokemon("Oddish", "leaf", "water");
 
-        for (Pokemon c : initializePokemons()) {
-
-            if (c.effectiveAgainst.equals(wildPokemon.type)) {
-                System.out.print("I choose you, " + c.name);
-            }
-
+        for (pokemon.Pokemon c : initializePokemons()) {
+            if (c.isEffectiveAgainst(wildPokemon)) {
+                System.out.println(c.name);
+            };
         }
+
+//        for (Pokemon c : initializePokemons()) {
+//
+//            if (c.effectiveAgainst.equals(wildPokemon.type)) {
+//                System.out.print("I choose you, " + c.name);
+//            }
+//
+//        }
         // Which pokemon should Ash use?
 
     }
