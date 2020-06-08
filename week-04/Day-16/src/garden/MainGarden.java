@@ -46,9 +46,9 @@ public class MainGarden {
         }
         for (Plants ap : g) {
             if (ap.water >= ap.waterLimit) {
-                System.out.println("The " + ap.name + " " + ap.getClass().getName().substring(ap.getClass().getName().indexOf(".") + 1, ap.getClass().getName().length()-1) + " doesn´t need water.");
+                System.out.println("The " + ap.name + " " + ap.getClass().getSimpleName() + " doesn´t need water.");
             } else {
-                System.out.println("The " + ap.name + " " + ap.getClass().getName().substring(ap.getClass().getName().indexOf(".") + 1, ap.getClass().getName().length()-1) + " needs water.");
+                System.out.println("The " + ap.name + " " + ap.getClass().getSimpleName() + " needs water.");
             }
 
         }
@@ -57,7 +57,7 @@ public class MainGarden {
     public static void reviewGarden(ArrayList<Plants> gar) {
         System.out.println("Number of plants in the garden: " + gar.size());
         for (Plants ap : gar) {
-            System.out.println("The "+ ap.name+ " " +ap.getClass().getName().substring(ap.getClass().getName().indexOf(".") + 1, ap.getClass().getName().length()-1)  + " is watered at " + ap.water);
+            System.out.println("The "+ ap.name+ " " +ap.getClass().getSimpleName()  + " is watered at " + ap.water);
 
         }
     }
