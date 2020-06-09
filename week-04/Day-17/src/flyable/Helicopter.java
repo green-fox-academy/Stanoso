@@ -1,16 +1,7 @@
-package zoo;
+package flyable;
 
-import flyable.Flyable;
+public class Helicopter extends Vehicle implements Flyable{
 
-public class Bird extends Animal implements Flyable {
-
-    public Bird(String name) {
-        this.setName(name);
-    }
-
-    public String breed () {
-        return "laying eggs.";
-    }
 
     @Override
     public void land() {
