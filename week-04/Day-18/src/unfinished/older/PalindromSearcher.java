@@ -22,7 +22,7 @@ public class PalindromSearcher {
                 }
 
                 int inputListSize = inputList.size();
-                
+
                 for (int h = 0; h < inputListSize; h++) {
                     if (inputList.get(0) == compareList.get(0)) {
                         inputList.remove(0);
