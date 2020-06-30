@@ -1,0 +1,70 @@
+
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.input-container {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    border: 1px solid silver;
+    border-radius: 3px;
+
+}
+ .input-container input {
+     border: 0px;
+     padding: 10px;
+     width: 100%;
+     outline: none;
+     color: silver;
+ }
+
+ i {
+     margin: 0 10px;
+     color: silver;
+ }
+
+body {
+    background-color: gainsboro;
+    font-family: Arial;
+    margin: 0;
+}
+form {
+    margin: auto;
+    margin-top: 100px;
+    padding: 50px;
+    padding-top: 20px;
+    background-color: white;
+    width: 300px;
+    text-align: left;
+}
+
+p {
+    font-size: larger;
+}
+
+label {
+    font-size: x-small;
+    text-align: left;
+    }
+
+
+.inputSize {
+    width: 280px;
+    padding: 8px;
+}
+
+.textRight {
+    text-align: right;
+    font-size: xx-small;
+}
+
+.inputLogin {
+    border: none;
+    border-radius: 20px;
+    background-color: black;
+    width: 100px;
+    color: white;
+    padding: 10px;
+}
+
+
+
