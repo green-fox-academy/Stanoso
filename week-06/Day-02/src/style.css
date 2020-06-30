@@ -1,0 +1,54 @@
+body {
+    background-color: dodgerblue
+}
+
+
+th, caption {
+    text-align: left;
+}
+
+td, th {
+    border-left: 1px solid silver;
+    border-top: 1px solid silver;
+}
+
+th, td, caption {
+    font-family: Arial;
+    font-size: larger;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+tr:nth-child(even) {
+    background-color: beige;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+td:first-child, th:first-child {
+    border-left: none
+}
+
+
+th {
+    border-top: black;
+    background-color: black;
+    border-bottom: 3px solid silver;
+}
+
+
+table {
+    color: dimgrey;
+    width: 500px;
+    border-collapse: collapse;
+    border: 0px solid dodgerblue;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+
+
+}
+
