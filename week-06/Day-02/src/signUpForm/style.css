@@ -1,0 +1,101 @@
+body {
+    background-color: darkgray;
+}
+
+#col1 {
+    width: 45%;
+}
+#col2 {
+    width: 12%;
+    text-align: center;
+    padding-top: 175px;
+    pa
+}
+
+#col3 {
+    width: 43%;
+    padding-top: 135px;
+}
+
+#col3 input {
+    width: 180px;
+    border: 0px;
+    padding: 8px 15px;
+    border-radius: 3px;
+    color: white;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.facebook {
+    background-color: darkblue;
+}
+.twitter {
+    background-color: dodgerblue;
+}
+.google {
+    background-color: red;
+}
+
+.column {
+    float: left;
+}
+.input-container p {
+    font-size: x-large;
+}
+.input-container {
+    margin: auto;
+    width: 450px;
+    height: 330px;
+    padding: 30px;
+    padding-top: 20px;
+    border-radius: 3px;
+    box-shadow: 2px 2px 10px black;
+    border: none;
+    background-color: white;
+    font-family: Arial;
+    text-align: left;
+    color: gray;
+}
+
+.input-container label {
+    visibility: hidden;
+
+}
+.submitButton {
+    border: 0px;
+    border-bottom: 0px solid lightseagreen;
+    background-color: lightseagreen;
+    padding: 8px 20px;
+    border-radius: 3px;
+    color: white;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: x-small;
+
+}
+
+.inputStyle {
+    border: 0px;
+    border-bottom: 1px solid silver;
+    padding: 10px;
+    padding-bottom: 5px;
+    outline: none;
+    width: 90%;
+}
+
+.inputUserName {
+    border: 0px;
+    border-bottom: 2px solid lightseagreen;
+    padding: 10px;
+    padding-bottom: 5px;
+    outline: none;
+    width: 90%;
+}
+
+form {
+    text-align: left;
+}
+
+
