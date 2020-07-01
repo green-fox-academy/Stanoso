@@ -17,7 +17,11 @@ public class SayHelloToAllTheWorldController {
     @ResponseBody
     @RequestMapping (value = "/helloall")
     public String sayHelloToAll (@RequestParam int lang) {
-        return hellos[lang-1];
+        if (lang<1 || lang>50) {
+            return "Your choice is out of range.";
+        } else {
+            return hellos[lang - 1];
+        }
     }
 
 
