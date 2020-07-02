@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:color="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Show all accounts</title>
+</head>
+<body>
+<table class="table table-hover">
+    <div>
+      <a href="template.html">  <button type="button" class="btn btn-primary btn-sm" >Add Balance</button></a>
+
+    </div>
+    <thead>
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Animal</th>
+        <th>Hierarchy status</th>
+        <th>Personality</th>
+    </tr>
+    </thead>
+
+    <tr th:each="account,iStat :${allaccounts}">
+        <td th:text="${iStat.count}" style=color:red></td>
+        <td th:text="${account.name}"></td>
+        <td th:text="${account.balance + ' ' + account.currency}"></td>
+        <td th:text="${account.animalType}"></td>
+        <td th:utext="${account.king} ? '<b style=color:blue>KING</b>' : 'ANIMAL' "></td>
+        <td th:switch="${account.goodType}"><span th:case="true">Good One</span><span th:case="false">Bad Guy</span>
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+</html>
