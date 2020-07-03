@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fragments</title>
+</head>
+<body>
+
+</body><!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Basic webshop</title>
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<nav th:fragment="navbar">
+    <div class="header">
+        My Shop
+        <hr>
+    </div>
+    <div>
+        <form>
+            <div class="distance">
+                <button type="submit" formaction="index"> HOME </button>
+                <button type="submit" formaction="available"> ONLY AVAILABLE </button>
+                <button type="submit" formaction="cheapest"><a> CHEAPEST FIRST </a></button>
+                <button type="submit" formaction="contains-nike"><a> CONTAINS NIKE </a></button>
+                <button type="submit" formaction="average"><a> AVERAGE STOCK </a></button>
+                <button type="submit" formaction="most-expensive"><a> MOST EXPENSIVE AVILABLE </a></button>
+            </div>
+            <div class="distance">
+                <label for="searchfield"> Search for:</label> <br>
+                <input class="inputsearch" type="text" name="" id="searchfield" placeholder="... something like Nike">
+                <button><a> SEARCH </a></button>
+
+            </div>
+        </form>
+    </div>
+
+</nav>
+<nav th:fragment="tableofitems">
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th> Name</th>
+                <th> Description</th>
+                <th> Price</th>
+                <th> Quantity of stock</th>
+            </tr>
+            </thead>
+
+            <tr th:each="item:${stockItem}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.description}"></td>
+                <td class="alignRight" th:text="${item.price} +' Kč'"></td>
+                <td class="alignRight" th:text="${item.quantityOfStock}"></td>
+
+            </tr>
+        </table>
+
+    </div>
+</nav>
+</body>
+</html>
+</html>
