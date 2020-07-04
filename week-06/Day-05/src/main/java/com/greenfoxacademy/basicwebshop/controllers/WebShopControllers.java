@@ -4,8 +4,7 @@ import com.greenfoxacademy.basicwebshop.models.ShopItem;
 import com.greenfoxacademy.basicwebshop.models.Stock;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebShopControllers {
@@ -47,5 +46,11 @@ public class WebShopControllers {
     public String average (Model model) {
         model.addAttribute("averageResult", myStock.getAverage());
         return "average";
+    }
+
+    @GetMapping ("search")
+    public String findText (Model model, @RequestParam String text) {
+        model.addAttribute("stockItem",myStock.containsText(text));
+        return "search";
     }
 }
