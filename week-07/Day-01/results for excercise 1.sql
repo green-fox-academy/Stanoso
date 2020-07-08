@@ -1,0 +1,14 @@
+SHOW TABLES;
+SELECT title FROM movie WHERE director LIKE "%Spielberg%";
+SELECT * FROM movie;
+SHOW TABLES;
+SELECT * FROM rating;
+SELECT * FROM reviewer;
+SELECT year FROM rating, movie WHERE stars  = 4; 
+SELECT distinct  year FROM movie INNER JOIN rating ON movie.mID = rating.mID WHERE stars BETWEEN 4 AND 5 ORDER BY YEARS;
+SELECT title FROM movie LEFT JOIN rating ON movie.mID = rating.mID WHERE stars IS NULL;
+SELECT name FROM reviewer INNER JOIN rating ON reviewer.rID = rating.rID WHERE ratingDate IS NULL;
+SELECT name, title, stars, ratingDate FROM movie INNER JOIN rating ON movie.mID = rating.mID INNER JOIN reviewer ON rating.rID = reviewer.rID ORDER BY name, title, stars;
+SELECT name, title FROM reviewer INNER JOIN rating ON reviewer.rID = rating.rID INNER JOIN movie ON movie.mID=rating.mID;
+SELECT title, MAX(stars) FROM movie INNER JOIN rating ON movie.mID = rating.mID group by movie.title order by title ASC;
+SELECT title, MAX(stars) - MIN(stars) FROM movie INNER JOIN rating ON movie.mID = rating.mID group by movie.title order by MAX(stars) - MIN(stars) DESC, title ASC;

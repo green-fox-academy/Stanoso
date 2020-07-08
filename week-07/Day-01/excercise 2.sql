@@ -1,0 +1,21 @@
+/*Creating databes for The ToDo app*/
+CREATE DATABASE todolist;
+USE todolist;
+CREATE TABLE tasks (id integer AUTO_INCREMENT NOT NULL, task varchar(100), done tinyint, date_created date, done_date date, PRIMARY KEY (id));
+DROP TABLE task;
+CREATE TABLE task (id integer AUTO_INCREMENT NOT NULL, task varchar(100), done tinyint, date_created date, done_date date, PRIMARY KEY (id));
+INSERT INTO tasks (task, done, date_created) VALUES ('feed the monkey', 0, '2020-07-08');
+INSERT INTO tasks VALUES (0,'walk the monkey', 1, '1999-07-06', null);
+INSERT INTO tasks VALUES (0,'sing with the monkey', 0, '2020-07-07', null);
+INSERT INTO tasks VALUES (0,'comb the monkey', 1 , '2020-07-02', '2020-07-05');
+INSERT INTO tasks VALUES (0,'kiss the monkey', 0, '2017-12-31', null);
+SELECT * FROM tasks;
+UPDATE tasks SET done_date = '2020-12-31' WHERE id = 2;
+DELETE FROM tasks WHERE id =3;
+CREATE TABLE task (id integer AUTO_INCREMENT NOT NULL, task varchar(100), done tinyint, date_created date, done_date date, PRIMARY KEY (id));
+SELECT * FROM tasks WHERE task LIKE '%sing%';
+CREATE TABLE from_wife_tasks (id integer AUTO_INCREMENT NOT NULL, task varchar(100), done tinyint, date_created date, done_date date, tasks_id integer, PRIMARY KEY (id), FOREIGN KEY (tasks_id) REFERENCES tasks(id));
+SELECT * FROM from_wife_tasks;
+INSERT INTO from_wife_tasks VALUES (0, 'don´t kiss it on lips', 0, '2020-07-07', null, 5); 
+SELECT * FROM tasks INNER JOIN from_wife_tasks ON tasks.id = from_wife_tasks.tasks_id WHERE tasks.task LIKE '%kiss%';
+INSERT INTO from_wife_tasks VALUES (0, 'paint the ladder', 0, '2020-07-08', null, null);
