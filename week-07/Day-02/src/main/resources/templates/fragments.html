@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Fragments</title>
+</head>
+<body>
+<nav th:fragment="navbar">
+    <div>
+        <form>
+            <div class="distance">
+                <button> <a href="/useful">Home</a> </button>
+                <button> <a href="/useful/colored">Background</a> </button>
+                <button>  <a href="/useful/email?email=is@this.valid">EMAIL</a>   </button>
+                <button> <a href="/useful/encoding">Caesar encoder</a> </button>
+                <button> <a href="/useful/decode">Caesar decoder</a> </button>
+
+            </div>
+        </form>
+    </div>
+</nav>
+
+</body>
+</html>
