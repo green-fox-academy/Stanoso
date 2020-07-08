@@ -25,5 +25,6 @@ public class DependencyexcercisesApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         print.log("Hello, what r ya doin?");
+        print.Color();
     }
 }
