@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -34,8 +35,15 @@ public class MainController {
         if (foxStock.isFoxInStock(petname)) {
             return "redirect:/?name=" + petname;
         } else {
-            model.addAttribute("notPresent", "You have provided a name \"" + petname + "\" that has not been used before, add it as a new one!");
-            return "login";
+            model.addAttribute("notPresent", "You have provided a name \"" + petname + "\" that has not been used before. Do you want to add it as a new one?");
+            model.addAttribute("newpet",petname);
+            return "loginew";
         }
+    }
+
+    @GetMapping("/loginnew/{newpet}")
+    public String addNewFox (@PathVariable String newpet) {
+        foxStock.addFox(newpet);
+        return "redirect:/?name=" + newpet;
     }
 }

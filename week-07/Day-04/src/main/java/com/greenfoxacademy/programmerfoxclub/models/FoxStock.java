@@ -28,4 +28,8 @@ public class FoxStock {
     public boolean isFoxInStock (String petname) {
         return foxStock.stream().anyMatch(f -> f.getName().toUpperCase().equals(petname.toUpperCase()));
     }
+
+    public void addFox (String name) {
+        this.foxStock.add(new Fox(name));
+    }
 }

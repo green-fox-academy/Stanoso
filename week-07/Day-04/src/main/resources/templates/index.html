@@ -8,7 +8,6 @@
 <div style="padding-left:20%">
     <!--  th:selected="${food.getId()==fox.food.getId()}"  -->
 
-    <li ><a href="/" >Information</a></li>
     <li><a href="/login">Login page</a></li>
     <img src="/greenfox.png">
     <div th:text="|This is ${foxName}. Currently living on ${foxFood} and ${foxDrink}. He knows ${foxTricksNumber} tricks.|">
@@ -16,8 +15,8 @@
     <h2> Known tricks </h2>
     <div th:each="trick : ${foxTricks}">
         <li style="padding-left: 4%" th:text="${trick}"></li>
-
     </div>
+    <div th:if="${foxTricks.size()==0}">You know no tricks, yet. Go and learn some.</div>
 </div>
 </body>
 </html>

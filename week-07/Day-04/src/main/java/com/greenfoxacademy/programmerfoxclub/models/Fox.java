@@ -23,8 +23,8 @@ public class Fox {
     public Fox(String name) {
         this.name = name;
         this.tricks = new ArrayList<String>();
-        this.food = "marmots";
-        this.drink = "mountain water";
+        this.food = "old bread";
+        this.drink = "water";
     }
 
     public String getName() {

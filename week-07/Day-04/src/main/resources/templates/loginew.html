@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login new</title>
+</head>
+<body style="padding-left: 5%">
+<h2>Welcome to Programmer Fox Club!</h2>
+
+<div style="padding-bottom: 20px"> Please provide a name, so you can associate it to your pet!</div>
+
+<form th:action="@{/}" method="POST">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="petname" autofocus>
+    <input type="submit" value="GO">
+</form>
+
+<h3 th:text="${notPresent}"></h3>
+<a th:href="@{|/loginnew/${newpet}|}">
+    <button th:text="|YES, add ${newpet} as a new one|"></button>
+</a>
+<a th:href="@{/login}">
+    <button th:text="|NO, it was a typo|"></button>
+</a>
+
+</body>
+</html>
