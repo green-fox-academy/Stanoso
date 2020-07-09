@@ -24,4 +24,8 @@ public class FoxStock {
         return foxStock.stream().filter(f -> f.getName().toUpperCase().equals(petname.toUpperCase()))
                 .findFirst().orElse(null);
     }
+
+    public boolean isFoxInStock (String petname) {
+        return foxStock.stream().anyMatch(f -> f.getName().toUpperCase().equals(petname.toUpperCase()));
+    }
 }
