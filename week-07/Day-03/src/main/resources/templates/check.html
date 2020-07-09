@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Check</title>
+</head>
+<body>
+
+<a href="/gfa"> Home </a> <br>
+<a href="/gfa/list"> List all </a> <br>
+<a href="/gfa/add"> Add a new Student </a> <br>
+
+<form th:action="@{/gfa/checked}" th:method="POST">
+    <label for="checkText"> Name to check: </label>
+    <input autofocus id="checkText" type="text" name="text">
+    <input type="submit" value="SEND">
+</form>
+</body>
+</html>
