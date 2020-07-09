@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body style="padding-left: 5%">
+
+<h2>Welcome to Programmer Fox Club!</h2>
+
+<div style="padding-bottom: 20px"> Please provide a name, so you can associate it to your pet! </div>
+
+<form th:action="@{/}" method="post">
+    <label for="name">Name</label>
+    <input id="name" type="text" name="petname" autofocus>
+    <input type="submit" value="GO" >
+</form>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div style="padding-left:20%">
+    <li><a href="index.html">Information</a></li>
+    <img src="/greenfox.png">
+    <div th:text="|This is ${foxName}. Currently living on ${foxFood} and ${foxDrink}. He knows ${foxTricksNumber} tricks.|">
+    </div>
+    <h2> Known tricks </h2>
+    <div th:each="trick : ${foxTricks}">
+        <li style="padding-left: 4%" th:text="${trick}"></li>
+
+    </div>
+</div>
+</body>
+</html>
