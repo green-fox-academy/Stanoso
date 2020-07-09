@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Add student</title>
+    <title>Add student via GET</title>
 </head>
 <body>
 
@@ -12,7 +12,7 @@
 <a href="/gfa/addviaget"> Add with GET method </a> <br>
 
 
-<form th:action="@{/gfa/save}" th:method="POST">
+<form th:action="@{/gfa/saveviaget}" th:method="GET">
     <label for="newstudent"> Name of new Student</label>
     <input autofocus id="newstudent" type="text" name="nameStudent">
     <input type="submit" value="SAVE">

@@ -15,40 +15,53 @@ public class StudentController {
     @Autowired
     private StudentService studentservice;
 
-    @GetMapping ("/gfa")
-    public String mainPage (Model model) {
+    @GetMapping("/gfa")
+    public String mainPage(Model model) {
         model.addAttribute("count", studentservice.count());
         return "index";
     }
 
-    @GetMapping ("/gfa/list")
-    public String listALL (Model model) {
+    @GetMapping("/gfa/list")
+    public String listALL(Model model) {
         model.addAttribute("all", this.studentservice.findAll());
         return "listall";
     }
 
-    @GetMapping ("/gfa/add")
-    public String addStudent () {
+    @GetMapping("/gfa/add")
+    public String addStudent() {
         return "addstudent";
     }
 
-    @PostMapping ("/gfa/save")
-    public String savedStudent (Model model, @RequestParam String nameStudent) {
+    @PostMapping("/gfa/save")
+    public String savedStudent(Model model, @RequestParam String nameStudent) {
         model.addAttribute("saved", nameStudent);
         model.addAttribute("count", studentservice.count());
         this.studentservice.save(nameStudent);
         return "saved";
     }
 
-    @GetMapping ("/gfa/check")
-    public String checkStudent () {
+    @GetMapping("/gfa/check")
+    public String checkStudent() {
         return "check";
     }
 
-    @PostMapping ("/gfa/checked")
-    public String checkStudent (@RequestParam String text, Model model) {
-        model.addAttribute("result",studentservice.checkStudent(text));
+    @PostMapping("/gfa/checked")
+    public String checkStudent(@RequestParam String text, Model model) {
+        model.addAttribute("result", studentservice.checkStudent(text));
         return "checked";
+    }
+    //Trying adding with GET method
+    @GetMapping("/gfa/addviaget")
+    public String addanotherStudent() {
+        return "addviaget";
+    }
+
+    @GetMapping("/gfa/saveviaget")
+    public String savedStudentGet(Model model, @RequestParam String nameStudent) {
+        model.addAttribute("saved", nameStudent);
+        model.addAttribute("count", studentservice.count());
+        this.studentservice.save(nameStudent);
+        return "saved";
     }
 
 }
