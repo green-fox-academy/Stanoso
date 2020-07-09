@@ -4,10 +4,7 @@ import com.greenfoxacademy.dependencyexcercises.usefulutilities.UtilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 
 @Controller
@@ -43,14 +40,23 @@ public class UtilityServiceController {
     }
 
     @GetMapping ("/useful/decode")
-    public String coding () {
+    public String decode () {
         return "decoding";
     }
 
-    @PostMapping("/useful/decode")
-    public String decode (Model model, @ModelAttribute String decode, @ModelAttribute Integer decodeNumber) {
-         model.addAttribute("coded", uService.caesar(decode, -1 * decodeNumber));
-        return "redirect:/decoding";
+    @GetMapping ("/useful/encode")
+    public String code () {
+        return "encoding";
+    }
+    @PostMapping("/useful/coded")
+    public String code (Model model,@RequestParam String decode,@RequestParam int decodeNumber) {
+         model.addAttribute("coded", uService.caesar(decode, decodeNumber));
+        return "coded";
+    }
+    @PostMapping("/useful/decoded")
+    public String decode (Model model,@RequestParam String decode,@RequestParam int decodeNumber) {
+        model.addAttribute("coded", uService.caesar(decode, -1*decodeNumber));
+        return "coded";
     }
 
 }
