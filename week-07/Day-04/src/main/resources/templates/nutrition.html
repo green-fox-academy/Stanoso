@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<div style="padding-left:20%">
+    <!--  th:selected="${food.getId()==fox.food.getId()}"  -->
+
+    <li><a th:href="@{|/?name=${foxName}|}">Information</a></li>
+    <li><a href="/login">Login page</a></li>
+    <li><a th:href="@{|/trickCenter/?name=${foxName}|}">Trick Center</a></li>
+    <br>
+
+    <form th:action="@{/nutritionChanged/}" th:method="POST">
+        <input type="hidden" name="name" th:value="${foxName}">
+        <label for="food"> Food </label>
+        <select id="food" name="food">
+            <option th:each="food:${foodTypes}" th:value="${food}" th:text="${food}">
+        </select>
+        <label for="drink"> Drink </label>
+        <select id="drink" name="drink">
+            <option th:each="drink:${drinkTypes}" th:value="${drink}" th:text="${drink}">
+        </select>
+        <input type="submit" value="Change">
+
+
+    </form>
+
+
+</div>
+</body>
+</html>

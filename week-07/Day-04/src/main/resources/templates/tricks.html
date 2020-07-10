@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Tricks</title>
+</head>
+<body>
+<div style="padding-left:20%">
+    <!--  th:selected="${food.getId()==fox.food.getId()}"  -->
+
+    <li><a th:href="@{|/?name=${foxName}|}">Information</a></li>
+    <li><a href="/login">Login page</a></li>
+    <li><a th:href="@{|/nutritionStore/?name=${foxName}|}">Nutrition Store</a></li>
+    <br>
+
+    <form th:action="@{/trickLearned/}" th:method="POST">
+        <input type="hidden" name="name" th:value="${foxName}">
+        <label for="trick"> Tricks </label>
+        <select id="trick" name="trick">
+            <option th:each="trick:${trickList}" th:value="${trick}" th:text="${trick}">
+        </select>
+
+        <input type="submit" value="Learn">
+
+
+    </form>
+
+
+</div>
+</body>
+</html>
