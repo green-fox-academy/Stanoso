@@ -48,7 +48,7 @@ public class Fox {
     }
 
     public boolean trickAlreadyLearned(String trick) {
-        return this.getTricks().stream().anyMatch(t -> t==trick);
+        return this.getTricks().stream().anyMatch(t -> t.equals(trick));
     }
 
     public String getFood() {

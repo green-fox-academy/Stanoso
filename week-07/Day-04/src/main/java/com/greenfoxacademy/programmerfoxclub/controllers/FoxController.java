@@ -16,8 +16,8 @@ public class FoxController {
     @Autowired
     private Tricks trickList;
 
-    @GetMapping ("/nutritionStore")
-    public String changeNutrition (@RequestParam String name, Model model) {
+    @GetMapping("/nutritionStore")
+    public String changeNutrition(@RequestParam String name, Model model) {
         model.addAttribute("foxName", name);
         model.addAttribute("foodTypes", foxStock.getFoodTypes());
         model.addAttribute("drinkTypes", foxStock.getDrinkTypes());
@@ -25,15 +25,15 @@ public class FoxController {
     }
 
     @PostMapping("/nutritionChanged")
-    public String addNewFox (@RequestParam String name, @RequestParam String food, @RequestParam String drink) {
+    public String addNewFox(@RequestParam String name, @RequestParam String food, @RequestParam String drink) {
         foxStock.findFox(name).setFood(food);
         foxStock.findFox(name).setDrink(drink);
         return "redirect:/?name=" + name;
 
     }
 
-    @GetMapping ("/trickCenter")
-    public String trickCentre (@RequestParam String name, Model model) {
+    @GetMapping("/trickCenter")
+    public String trickCentre(@RequestParam String name, Model model) {
         model.addAttribute("foxName", name);
         model.addAttribute("trickList", trickList.getTricks());
         return "tricks";
@@ -42,10 +42,12 @@ public class FoxController {
     @PostMapping("/trickLearned")
     public String learnTrick(@RequestParam String name, @RequestParam String trick, Model model) {
         if (foxStock.findFox(name).trickAlreadyLearned(trick)) {
-            model.addAttribute("leared", "Learn another trick, "+name+" knows this.")
+            model.addAttribute("leared", "Learn another trick, " + name + " knows this.");
+            model.addAttribute("foxName", name);
+            return "tricks";
+        } else {
+            foxStock.findFox(name).setTrick(trick);
+            return "redirect:/?name=" + name;
         }
-        foxStock.findFox(name).setTrick(trick);
-        return "redirect:/?name=" + name;
-
     }
 }
