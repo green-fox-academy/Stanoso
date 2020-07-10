@@ -42,7 +42,8 @@ public class FoxController {
     @PostMapping("/trickLearned")
     public String learnTrick(@RequestParam String name, @RequestParam String trick, Model model) {
         if (foxStock.findFox(name).trickAlreadyLearned(trick)) {
-            model.addAttribute("leared", "Learn another trick, " + name + " knows this.");
+            model.addAttribute("learned", "Learn another trick, " + name + " knows this.");
+            model.addAttribute("trickList", trickList.getTricks());
             model.addAttribute("foxName", name);
             return "tricks";
         } else {
