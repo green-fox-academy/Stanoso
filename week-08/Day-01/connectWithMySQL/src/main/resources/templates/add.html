@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add a new ToDo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body>
+<form th:action="@{/todo/add}" th:method="POST">
+    <label for="addNew"> Add a new ToDo Title </label> <br>
+    <input id="addNew" name="newtodo" type="text"> <br>
+    <label for="addNewDesc"> Add a new ToDo Description  </label> <br>
+    <input id="addNewDesc" name="description" type="text"> <br>
+    <label for="urgent">Urgent</label>
+    <input type="checkbox" name="urgent" id="urgent"> <br>
+    <input type="hidden" name="urgent" value="false">
+    <input type="submit" value="Save">
+
+</form>
+
+
+
+</body>
+</html>

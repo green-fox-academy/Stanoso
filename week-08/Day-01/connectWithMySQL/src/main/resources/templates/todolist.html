@@ -9,19 +9,35 @@
 
 <body>
 
+<a href="/todo/add">Add a new ToDo</a> <br>
+<br>
+<form th:action="@{/search}" method="POST">
+    <label for="search">Search </label>
+    <input type="text" id="search" name="search">
+    <input type="submit" value="Search">
+</form>
+<a href="/list">List all</a> <br>
+<br>
+
 <caption>Todos for today:</caption>
-<table class="table">
+<table class="table table-hover">
     <thead class="thead-dark">
     <th> Id</th>
     <th> ToDo</th>
+    <th> Description </th>
     <th> Urgent</th>
     <th> Done</th>
+    <th></th>
+    <th></th>
     </thead>
     <tr th:each="todo: ${todos}">
         <td th:text="${todo.id}"></td>
         <td th:text="${todo.title}"></td>
+        <td th:text="${todo.description}"></td>
         <td th:text="${todo.urgent} ? 'YES' : 'NO'  "></td>
         <td th:text="${todo.done} ? 'YES' : 'NO'  "></td>
+        <td><a th:href="@{|/${todo.id}/delete|}"> delete </a></td>
+        <td><a th:href="@{|/${todo.id}/edit|}"> edit </a></td>
     </tr>
 
 </table>

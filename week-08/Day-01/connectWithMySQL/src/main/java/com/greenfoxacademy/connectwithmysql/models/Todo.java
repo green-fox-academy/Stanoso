@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +17,10 @@ import java.util.List;
 public class Todo {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue //(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String title;
+    private String description;
     private boolean urgent;
     private boolean done;
 
@@ -31,19 +32,29 @@ public class Todo {
         this.title = title;
         this.urgent = false;
         this.done = false;
+        this.description = "";
     }
 
-    public Todo(long id, String title, boolean urgent, boolean done) {
+    public Todo(long id, String title, boolean urgent, boolean done, String description) {
         this.id = id;
         this.title = title;
         this.urgent = urgent;
         this.done = done;
+        this.description = description;
+    }
+
+    public Todo(String title, boolean urgent, String description) {
+        this.title = title;
+        this.urgent = urgent;
+        this.done = false;
+        this.description = description;
     }
 
     public Todo(String title, boolean urgent, boolean done) {
         this.title = title;
         this.urgent = urgent;
         this.done = done;
+        this.description = "";
     }
     public long getId() {
         return id;
@@ -77,7 +88,14 @@ public class Todo {
         this.done = done;
     }
 
-//    public List<Todo> getAll () {
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    //    public List<Todo> getAll () {
 //        List<Todo> list = new ArrayList<>();
 //        this.todoRepository.findAll().forEach(list::add);
 //        return list;
