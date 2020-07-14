@@ -1,6 +1,6 @@
-package com.greenfoxacademy.todo.models;
+package com.greenfoxacademy.connectwithmysql.models;
 
-import com.greenfoxacademy.todo.repositories.TodoRepository;
+import com.greenfoxacademy.connectwithmysql.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Component;
