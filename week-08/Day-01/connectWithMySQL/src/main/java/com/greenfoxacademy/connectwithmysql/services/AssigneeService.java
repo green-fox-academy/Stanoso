@@ -15,4 +15,7 @@ public interface AssigneeService {
     Assignee getById (Long id);
     void editAssignee (Long id, String name, String email);
     List<Assignee> findInAssignne (String search);
+    Boolean checkAssigneeExists(String name, String email);
+    List<String> getNameAndEmail ();
+    Long getIdByNameAndEmail (String nameemail);
 }

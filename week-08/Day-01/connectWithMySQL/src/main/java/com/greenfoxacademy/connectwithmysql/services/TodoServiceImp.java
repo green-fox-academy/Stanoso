@@ -1,10 +1,13 @@
 package com.greenfoxacademy.connectwithmysql.services;
 
+import com.greenfoxacademy.connectwithmysql.models.Assignee;
 import com.greenfoxacademy.connectwithmysql.models.Todo;
 import com.greenfoxacademy.connectwithmysql.repositories.TodoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -29,8 +32,14 @@ public class TodoServiceImp implements TodoService {
     }
 
     @Override
-    public void edit(Long id, String newtodo, boolean urgent, boolean done, String description) {
-        Todo edited = new Todo(id, newtodo,urgent, done,description);
+    public void saveWithAssignee(String newtodo, boolean urgent, String description, Assignee assignee) {
+        Todo saveNew = new Todo(newtodo,urgent,description,assignee);
+        this.todoRepository.save(saveNew);
+    }
+
+    @Override
+    public void edit(Long id, String newtodo, boolean urgent, boolean done, String description, String date) {
+        Todo edited = new Todo(id, newtodo,urgent, done,description,date);
         this.todoRepository.save(edited);
     }
 

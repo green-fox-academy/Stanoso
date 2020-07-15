@@ -30,6 +30,9 @@
     <th> Id</th>
     <th> ToDo</th>
     <th> Description </th>
+    <th> Assignee</th>
+    <th> Created</th>
+    <th> Finish till</th>
     <th> Urgent</th>
     <th> Done</th>
     <th></th>
@@ -39,6 +42,9 @@
         <td th:text="${todo.id}"></td>
         <td th:text="${todo.title}"></td>
         <td th:text="${todo.description}"></td>
+        <td th:text="${todo.assignee.getName()}"></td>
+        <td th:text="${todo.date}"></td>
+        <td th:text="${todo.finish}"></td>
         <td th:text="${todo.urgent} ? 'YES' : 'NO'  "></td>
         <td th:text="${todo.done} ? 'YES' : 'NO'  "></td>
         <td><a th:href="@{|/${todo.id}/delete|}"> delete </a></td>

@@ -10,9 +10,15 @@
 <body style="padding-left: 2%">
 <form th:action="@{/todo/add}" th:method="POST">
     <label for="addNew"> Add a new ToDo Title </label> <br>
-    <input id="addNew" name="newtodo" type="text"> <br>
+    <input id="addNew" name="newtodo" type="text" required> <br>
     <label for="addNewDesc"> Add a new ToDo Description  </label> <br>
     <input id="addNewDesc" name="description" type="text"> <br>
+    <label for="assignee"> Add a new Assignee or </label> <br>
+    <input id="assignee" name="newAssignee" type="text"> <br>
+    <label for="storedAssignees"> chose from stored Assignees</label>
+    <select id="storedAssignees" name="assignee">
+        <option th:each="assignee:${assignees}" th:value="${assignee}" th:text="${assignee}">
+    </select> <br>
     <label for="urgent">Urgent</label>
     <input type="checkbox" name="urgent" id="urgent"> <br>
     <input type="hidden" name="urgent" value="false">

@@ -6,7 +6,9 @@ import com.greenfoxacademy.connectwithmysql.repositories.AssigneeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class AssigneeServiceImp implements AssigneeService {
@@ -16,6 +18,10 @@ public class AssigneeServiceImp implements AssigneeService {
     @Autowired
     public AssigneeServiceImp(AssigneeRepository assigneeRepository) {
         this.assigneeRepository = assigneeRepository;
+    }
+
+    public AssigneeServiceImp() {
+
     }
 
     @Override
@@ -49,4 +55,34 @@ public class AssigneeServiceImp implements AssigneeService {
         return this.assigneeRepository.findSearchInAssignee(search);
     }
 
+
+
+    @Override
+    public Boolean checkAssigneeExists(String name, String email) {
+        return  getNameAndEmail().stream().anyMatch(e -> e.equals(name + ", "+ email));
+    }
+
+    @Override
+    public List<String> getNameAndEmail () {
+        List<Assignee> list = findAll();
+        List<String> listNameEmail = new ArrayList<>();
+        for (Assignee a : list) {
+            listNameEmail.add(a.getName() + ", "+ a.getEmail());
+        }
+        return listNameEmail;
+    }
+
+    @Override
+    public Long getIdByNameAndEmail(String nameemail) {
+        String[] splitted = nameemail.split(", ");
+        String name = splitted[0];
+        String email = splitted[1];
+//        List<Assignee> list = findAll();
+//        Long id = list.stream().filter(a -> a.getName().toUpperCase().equals(name.toUpperCase()))
+//                     .filter(a -> a.getEmail().toUpperCase().equals(email.toUpperCase()))
+//                     .findAny()
+//                     .get()
+//                     .getId();
+        return this.assigneeRepository.getIdByNameAndEmail(name,email);
+    }
 }

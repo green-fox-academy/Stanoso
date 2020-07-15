@@ -3,6 +3,7 @@ package com.greenfoxacademy.connectwithmysql.controllers;
 import com.greenfoxacademy.connectwithmysql.models.Todo;
 import com.greenfoxacademy.connectwithmysql.repositories.AssigneeRepository;
 import com.greenfoxacademy.connectwithmysql.repositories.TodoRepository;
+import com.greenfoxacademy.connectwithmysql.services.AssigneeService;
 import com.greenfoxacademy.connectwithmysql.services.TodoService;
 import com.greenfoxacademy.connectwithmysql.services.TodoServiceImp;
 import com.sun.org.apache.xpath.internal.objects.XString;
@@ -11,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,6 +25,9 @@ public class TodoController {
    public TodoController (TodoService todoService) {
        this.todoService = todoService;
    }
+
+   @Autowired
+   private AssigneeService assigneeService;
 
 
 
@@ -34,13 +40,15 @@ public class TodoController {
     }
 
     @GetMapping ("/todo/add")
-    public String gotoNewTodo () {
+    public String gotoNewTodo (Model model) {
+        model.addAttribute("assignees",this.assigneeService.getNameAndEmail());
         return "add";
     }
 
     @PostMapping("/todo/add")
-    public String addNewTodo (@RequestParam String newtodo, @RequestParam String description, @RequestParam boolean urgent, Model model) {
-        this.todoService.save(newtodo, urgent, description);
+    public String addNewTodo (@RequestParam String newtodo, @RequestParam String description, @RequestParam boolean urgent, Model model, @RequestParam String assignee) {
+        Long assigneeID = this.assigneeService.getIdByNameAndEmail(assignee);
+        this.todoService.saveWithAssignee(newtodo, urgent, description, this.assigneeService.getById(assigneeID));
         return "redirect:/list";
     }
 
@@ -61,12 +69,12 @@ public class TodoController {
     }
 
     @PostMapping("/{idOfTodo}/edit")
-    public String saveEditedToDo(@RequestParam String newtodo, @RequestParam boolean urgent,
-                                 @RequestParam boolean done, @PathVariable Long idOfTodo, @RequestParam String description,  Model model) {
+    public String saveEditedToDo(@RequestParam String newtodo, @RequestParam boolean urgent, @RequestParam String date
+ ,                                @RequestParam boolean done, @PathVariable Long idOfTodo, @RequestParam String description, Model model) {
         if (newtodo == "") {
             newtodo = this.todoService.getById(idOfTodo).getTitle();
         }
-        this.todoService.edit(idOfTodo,newtodo,urgent,done,description);
+        this.todoService.edit(idOfTodo,newtodo,urgent,done,description, date);
         return "redirect:/list";
     }
 

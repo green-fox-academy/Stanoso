@@ -39,8 +39,11 @@ public class AssigneeController {
     }
 
     @PostMapping("/add-assignee")
-    public String saveAddAssignee(@RequestParam String name, @RequestParam String email) {
-        if (email == null) {
+    public String saveAddAssignee(@RequestParam String name, @RequestParam String email, Model model) {
+        if (this.assigneeService.checkAssigneeExists(name,email)) {
+            model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
+            return "addAssignee";
+        } else if (email == null) {
             email = "";
         }
         this.assigneeService.addAssignee(name, email);
