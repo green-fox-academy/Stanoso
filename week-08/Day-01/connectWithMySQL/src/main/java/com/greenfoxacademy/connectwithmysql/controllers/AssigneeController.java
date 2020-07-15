@@ -40,7 +40,7 @@ public class AssigneeController {
 
     @PostMapping("/add-assignee")
     public String saveAddAssignee(@RequestParam String name, @RequestParam String email, Model model) {
-        if (this.assigneeService.checkAssigneeExists(name,email)) {
+        if (this.assigneeService.checkAssigneeExists(name, email)) {
             model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
             return "addAssignee";
         } else if (email == null) {
@@ -56,24 +56,31 @@ public class AssigneeController {
         return "redirect:/list-assignees";
     }
 
-    @GetMapping ("/{assigneeId}/editAssignee")
+    @GetMapping("/{assigneeId}/editAssignee")
     public String editAssignee(Model model, @PathVariable Long assigneeId) {
         model.addAttribute("id", assigneeId);
-        model.addAttribute("assigneeName",this.assigneeService.getById(assigneeId).getName());
-        model.addAttribute("assigneeEmail",this.assigneeService.getById(assigneeId).getEmail());
+        model.addAttribute("assigneeName", this.assigneeService.getById(assigneeId).getName());
+        model.addAttribute("assigneeEmail", this.assigneeService.getById(assigneeId).getEmail());
         return "editAssignee";
     }
 
     @PostMapping("/{assigneeId}/editAssignee")
-    public String editAssignee(@RequestParam String name, @RequestParam String emailAssignee, @PathVariable Long assigneeId) {
+    public String editAssignee(@RequestParam String name, @RequestParam String emailAssignee, @PathVariable Long assigneeId, Model model) {
+        if (this.assigneeService.checkAssigneeExists(name, emailAssignee)) {
+            model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
+            model.addAttribute("id", assigneeId);
+            model.addAttribute("assigneeName", this.assigneeService.getById(assigneeId).getName());
+            model.addAttribute("assigneeEmail", this.assigneeService.getById(assigneeId).getEmail());
+            return "/editAssignee";
+        }
         this.assigneeService.editAssignee(assigneeId, name, emailAssignee);
         return "redirect:/list-assignees";
     }
 
-    @PostMapping ("/searchAssignee")
-    public String searchInAssignee (@RequestParam String search, Model model) {
-         model.addAttribute("assignees",this.assigneeService.findInAssignne(search));
-         return "assigneelist";
+    @PostMapping("/searchAssignee")
+    public String searchInAssignee(@RequestParam String search, Model model) {
+        model.addAttribute("assignees", this.assigneeService.findInAssignne(search));
+        return "assigneelist";
     }
 
 }

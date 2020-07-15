@@ -15,8 +15,8 @@ public class TodoServiceImp implements TodoService {
     TodoRepository todoRepository;
 
     @Autowired
-    public TodoServiceImp (TodoRepository todoRepository) {
-        this.todoRepository =  todoRepository;
+    public TodoServiceImp(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
     }
 
 
@@ -27,19 +27,19 @@ public class TodoServiceImp implements TodoService {
 
     @Override
     public void save(String newtodo, boolean urgent, String description) {
-        Todo saveNew = new Todo(newtodo,urgent,description);
+        Todo saveNew = new Todo(newtodo, urgent, description);
         this.todoRepository.save(saveNew);
     }
 
     @Override
     public void saveWithAssignee(String newtodo, boolean urgent, String description, Assignee assignee) {
-        Todo saveNew = new Todo(newtodo,urgent,description,assignee);
+        Todo saveNew = new Todo(newtodo, urgent, description, assignee);
         this.todoRepository.save(saveNew);
     }
 
     @Override
     public void edit(Long id, String newtodo, boolean urgent, boolean done, String description, String date) {
-        Todo edited = new Todo(id, newtodo,urgent, done,description,date);
+        Todo edited = new Todo(id, newtodo, urgent, done, description, date);
         this.todoRepository.save(edited);
     }
 

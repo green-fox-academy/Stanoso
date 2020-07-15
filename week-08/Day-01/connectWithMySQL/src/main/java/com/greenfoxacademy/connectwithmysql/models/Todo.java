@@ -22,6 +22,7 @@ public class Todo {
     private String description;
     private boolean urgent;
     private boolean done;
+    @Temporal(value = TemporalType.DATE)
     private Date date;
     private String finish;
 

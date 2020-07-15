@@ -1,14 +1,12 @@
 package com.greenfoxacademy.connectwithmysql.services;
 
 import com.greenfoxacademy.connectwithmysql.models.Assignee;
-import com.greenfoxacademy.connectwithmysql.models.Todo;
 import com.greenfoxacademy.connectwithmysql.repositories.AssigneeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 @Component
 public class AssigneeServiceImp implements AssigneeService {
@@ -30,8 +28,9 @@ public class AssigneeServiceImp implements AssigneeService {
     }
 
     @Override
-    public void addAssignee(String name, String email) {
+    public Assignee addAssignee(String name, String email) {
         this.assigneeRepository.save(new Assignee(name, email));
+        return null;
     }
 
     @Override
