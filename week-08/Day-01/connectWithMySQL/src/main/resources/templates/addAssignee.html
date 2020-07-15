@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Assignee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body style="padding-left: 2%">
+<h2> Add a new Assignee</h2>
+<form th:action="@{/add-assignee}" th:method="POST">
+    <label for="name"> Set name </label> <br>
+    <input id="name" name="name" type="text" required> <br>
+    <div><br></div>
+    <label for="email"> Set e-mail adress  </label> <br>
+    <input id="email" name="email" type="email"> <br>
+    <div><br></div>
+    <input type="submit" value="Save">
+</form>
+
+
+
+</body>
+</html>

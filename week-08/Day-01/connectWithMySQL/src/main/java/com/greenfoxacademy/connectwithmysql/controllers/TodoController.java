@@ -45,7 +45,7 @@ public class TodoController {
     }
 
     @GetMapping ("{idOfTodo}/delete")
-    public String deleteToDo (@PathVariable Long idOfTodo, Model model) {
+    public String deleteToDo (@PathVariable Long idOfTodo) {
         this.todoService.deleteById(idOfTodo);
         return "redirect:/list";
     }

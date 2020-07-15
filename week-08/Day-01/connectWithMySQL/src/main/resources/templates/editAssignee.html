@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Assignee</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body style="padding-left: 2%">
+<h2>Edit Assignee</h2>
+<form th:action="@{|/${id}/editAssignee|}" th:method="POST">
+    <label for="name"> Change the name  </label> <br>
+    <input id="name" name="name" type="text" th:value="${assigneeName}" required> <br>
+    <div><br></div>
+    <label for="email"> Change the e-mail  </label> <br>
+    <input id="email" name="emailAssignee" type="email" th:value="${assigneeEmail}"> <br>
+    <div><br></div>
+    <input type="submit" value="Save changes">
+</form>
+
+
+
+</body>
+</html>

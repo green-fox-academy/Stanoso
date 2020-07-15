@@ -11,15 +11,13 @@
 <h2 style="margin-left: 2%">Assignees</h2>
 
 <br>
-<form th:action="@{/search}" method="POST" style="margin-left: 2%">
+<form th:action="@{/searchAssignee}" method="POST" style="margin-left: 2%">
     <label for="search">Search </label>
     <input type="text" id="search" name="search">
     <input type="submit" value="Search">
 </form>
-<a href="/todo/add" style="margin-left: 2%">Add a new Assignee</a> | | |
-<!--<a href="/list">List all</a> |-->
-<!--<a href="/list/name=urgent">List Urgent</a> |-->
-<!--<a href="/list/name=done">List Done</a> | | |-->
+<a href="/add-assignee" style="margin-left: 2%">Add a new Assignee</a> |
+<a href="/list-assignees">List All Assignees</a> | | |
 <a href="/list">List of ToDos</a>
 <br>
 <div><br></div>
@@ -36,8 +34,9 @@
     <tr th:each="assignee : ${assignees}">
         <td th:text="${assignee.id}"></td>
         <td th:text="${assignee.name}"></td>
-<!--        <td><a th:href="@{|/${assignee.id}/delete|}"> delete </a></td>-->
-<!--        <td><a th:href="@{|/${assignee.id}/edit|}"> edit </a></td>-->
+        <td th:text="${assignee.email}"></td>
+        <td><a th:href="@{|/${assignee.id}/deleteAssignee|}"> delete </a></td>
+        <td><a th:href="@{|/${assignee.id}/editAssignee|}"> edit </a></td>
     </tr>
 
 </table>

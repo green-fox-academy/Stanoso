@@ -10,4 +10,9 @@ import java.util.List;
 public interface AssigneeService {
 
     List<Assignee> findAll();
+    void addAssignee (String name, String email);
+    void deleteAssigneeById (Long id);
+    Assignee getById (Long id);
+    void editAssignee (Long id, String name, String email);
+    List<Assignee> findInAssignne (String search);
 }
