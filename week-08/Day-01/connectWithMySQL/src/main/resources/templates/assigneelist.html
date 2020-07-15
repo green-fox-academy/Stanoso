@@ -1,0 +1,47 @@
+<!<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Assignee List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+
+<body >
+<h2 style="margin-left: 2%">Assignees</h2>
+
+<br>
+<form th:action="@{/search}" method="POST" style="margin-left: 2%">
+    <label for="search">Search </label>
+    <input type="text" id="search" name="search">
+    <input type="submit" value="Search">
+</form>
+<a href="/todo/add" style="margin-left: 2%">Add a new Assignee</a> | | |
+<!--<a href="/list">List all</a> |-->
+<!--<a href="/list/name=urgent">List Urgent</a> |-->
+<!--<a href="/list/name=done">List Done</a> | | |-->
+<a href="/list">List of ToDos</a>
+<br>
+<div><br></div>
+
+
+<table class="table table-hover " >
+    <thead class="thead-dark">
+    <th> Id</th>
+    <th> Name </th>
+    <th> e-mail </th>
+    <th></th>
+    <th></th>
+    </thead>
+    <tr th:each="assignee : ${assignees}">
+        <td th:text="${assignee.id}"></td>
+        <td th:text="${assignee.name}"></td>
+<!--        <td><a th:href="@{|/${assignee.id}/delete|}"> delete </a></td>-->
+<!--        <td><a th:href="@{|/${assignee.id}/edit|}"> edit </a></td>-->
+    </tr>
+
+</table>
+
+
+</body>
+</html>

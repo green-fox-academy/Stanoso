@@ -1,7 +1,10 @@
 package com.greenfoxacademy.connectwithmysql.controllers;
 
 import com.greenfoxacademy.connectwithmysql.models.Todo;
+import com.greenfoxacademy.connectwithmysql.repositories.AssigneeRepository;
 import com.greenfoxacademy.connectwithmysql.repositories.TodoRepository;
+import com.greenfoxacademy.connectwithmysql.services.TodoService;
+import com.greenfoxacademy.connectwithmysql.services.TodoServiceImp;
 import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,21 +17,18 @@ import java.util.List;
 @Controller
 public class TodoController {
 
-    TodoRepository todoRepository;
+   private TodoService todoService;
 
-    @Autowired
-    public TodoController (TodoRepository todoRepository) {
-        this.todoRepository =  todoRepository;
-    }
-
-
+   public TodoController (TodoService todoService) {
+       this.todoService = todoService;
+   }
 
 
 
     @GetMapping (value = {"/","/list"})
     public String list (Model model) {
         List<Todo> list = new ArrayList<>();
-        this.todoRepository.findAll().forEach(list::add);
+        this.todoService.findAll().forEach(list::add);
         model.addAttribute("todos", list);
         return "todolist";
     }
@@ -40,24 +40,23 @@ public class TodoController {
 
     @PostMapping("/todo/add")
     public String addNewTodo (@RequestParam String newtodo, @RequestParam String description, @RequestParam boolean urgent, Model model) {
-        Todo toDo = new Todo(newtodo, urgent, description);
-        this.todoRepository.save(toDo);
+        this.todoService.save(newtodo, urgent, description);
         return "redirect:/list";
     }
 
     @GetMapping ("{idOfTodo}/delete")
     public String deleteToDo (@PathVariable Long idOfTodo, Model model) {
-        this.todoRepository.deleteById(idOfTodo);
+        this.todoService.deleteById(idOfTodo);
         return "redirect:/list";
     }
 
     @GetMapping ("{idOfTodo}/edit")
     public String editToDo(Model model, @PathVariable Long idOfTodo) {
         model.addAttribute("id",idOfTodo);
-        model.addAttribute("toDoTitle",this.todoRepository.getById(idOfTodo).getTitle());
-        model.addAttribute("urgent",this.todoRepository.getById(idOfTodo).isUrgent());
-        model.addAttribute("done",this.todoRepository.getById(idOfTodo).isDone());
-        model.addAttribute("description",this.todoRepository.getById(idOfTodo).getDescription());
+        model.addAttribute("toDoTitle",this.todoService.getById(idOfTodo).getTitle());
+        model.addAttribute("urgent",this.todoService.getById(idOfTodo).isUrgent());
+        model.addAttribute("done",this.todoService.getById(idOfTodo).isDone());
+        model.addAttribute("description",this.todoService.getById(idOfTodo).getDescription());
         return "edit";
     }
 
@@ -65,16 +64,27 @@ public class TodoController {
     public String saveEditedToDo(@RequestParam String newtodo, @RequestParam boolean urgent,
                                  @RequestParam boolean done, @PathVariable Long idOfTodo, @RequestParam String description,  Model model) {
         if (newtodo == "") {
-            newtodo = this.todoRepository.getById(idOfTodo).getTitle();
+            newtodo = this.todoService.getById(idOfTodo).getTitle();
         }
-        Todo toDo = new Todo(idOfTodo,newtodo,urgent,done,description);
-        this.todoRepository.save(toDo);
+        this.todoService.edit(idOfTodo,newtodo,urgent,done,description);
         return "redirect:/list";
     }
 
     @PostMapping ("/search")
     public String search (@RequestParam String search, Model model) {
-        model.addAttribute("todos", this.todoRepository.findSearch(search));
+        model.addAttribute("todos", this.todoService.findSearch(search));
+        return "todolist";
+    }
+
+    @GetMapping ("/list/name=urgent")
+    public String searchUrgent (Model model) {
+        model.addAttribute("todos", this.todoService.getByUrgent(true));
+        return "todolist";
+    }
+
+    @GetMapping ("/list/name=done")
+    public String searchDone(Model model) {
+        model.addAttribute("todos", this.todoService.getByDone(true));
         return "todolist";
     }
 

@@ -6,10 +6,7 @@ import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,12 +14,16 @@ import java.util.List;
 public class Todo {
 
     @Id
-    @GeneratedValue //(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;
     private boolean urgent;
     private boolean done;
+
+    @ManyToOne
+    @JoinColumn(name="assigneeId")
+    private Assignee assignee;
 
 
 
