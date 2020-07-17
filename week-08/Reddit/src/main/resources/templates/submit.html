@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="text-align: center">
+<h2>Submit a new post</h2>
+<form>
+<form th:action="@{/submit}" th:method="POST">
+    <label for="title">Title: </label>
+    <input id="title" type="text" autofocus name="title"> <br>
+    <label for="url">URL: </label>
+    <input id="url" type="url" name="url"><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
