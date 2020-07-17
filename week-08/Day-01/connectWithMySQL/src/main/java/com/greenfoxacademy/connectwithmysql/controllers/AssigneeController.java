@@ -40,11 +40,10 @@ public class AssigneeController {
 
     @PostMapping("/add-assignee")
     public String saveAddAssignee(@RequestParam String name, @RequestParam String email, Model model) {
+        email = changeNoEmailToNotSet(email);
         if (this.assigneeService.checkAssigneeExists(name, email)) {
             model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
             return "addAssignee";
-        } else if (email == null) {
-            email = "";
         }
         this.assigneeService.addAssignee(name, email);
         return "redirect:/list-assignees";
@@ -60,18 +59,22 @@ public class AssigneeController {
     public String editAssignee(Model model, @PathVariable Long assigneeId) {
         model.addAttribute("id", assigneeId);
         model.addAttribute("assigneeName", this.assigneeService.getById(assigneeId).getName());
-        model.addAttribute("assigneeEmail", this.assigneeService.getById(assigneeId).getEmail());
+        model.addAttribute("assigneeEmail", changeNoEmailToNotSetIfTrue(assigneeId));
         return "editAssignee";
     }
 
     @PostMapping("/{assigneeId}/editAssignee")
-    public String editAssignee(@RequestParam String name, @RequestParam String emailAssignee, @PathVariable Long assigneeId, Model model) {
+    public String editAssignee(@RequestParam String name, @RequestParam String emailAssignee, @PathVariable Long assigneeId, Model model, @RequestParam String oldemail) {
+        emailAssignee = changeNoEmailToNotSet(emailAssignee);
         if (this.assigneeService.checkAssigneeExists(name, emailAssignee)) {
             model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
             model.addAttribute("id", assigneeId);
             model.addAttribute("assigneeName", this.assigneeService.getById(assigneeId).getName());
             model.addAttribute("assigneeEmail", this.assigneeService.getById(assigneeId).getEmail());
             return "/editAssignee";
+        }
+        if (emailAssignee.equals("")) {
+            emailAssignee = "email not set";
         }
         this.assigneeService.editAssignee(assigneeId, name, emailAssignee);
         return "redirect:/list-assignees";
@@ -81,6 +84,21 @@ public class AssigneeController {
     public String searchInAssignee(@RequestParam String search, Model model) {
         model.addAttribute("assignees", this.assigneeService.findInAssignne(search));
         return "assigneelist";
+    }
+
+    public String changeNoEmailToNotSetIfTrue (Long assigneeId) {
+        String email = this.assigneeService.getById(assigneeId).getEmail();
+        if (email.equals("email not set")) {
+            email="";
+        }
+        return email;
+    }
+
+    public String changeNoEmailToNotSet (String email) {
+        if (email.equals("")) {
+            return  "email not set";
+        }
+        return email;
     }
 
 }

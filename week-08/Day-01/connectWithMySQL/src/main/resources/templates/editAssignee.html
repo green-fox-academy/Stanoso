@@ -17,6 +17,7 @@
     <input id="email" name="emailAssignee" type="email" th:value="${assigneeEmail}"> <br>
     <div><br></div>
     <input type="submit" value="Save changes">
+    <input type="hidden" name="oldemail" value="">
 </form>
 <br>
 <h5 th:text="${exists}"></h5>
