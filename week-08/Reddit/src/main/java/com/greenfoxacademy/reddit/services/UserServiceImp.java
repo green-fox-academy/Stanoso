@@ -16,6 +16,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public boolean checkIfUserExists(String userName) {
-        return this.userRepository.findByUserNameExists(userName);
+        return this.userRepository.findByUserName(userName);
     }
 }

@@ -31,6 +31,7 @@ public class PostController {
         }
         model.addAttribute("posts", this.postService.getListOfPostsForPageNumber(page));
         model.addAttribute("totalPages",this.postService.getListOfPageNumbers(totalPages));
+        model.addAttribute("page",page);
         return "home";
     }
 
@@ -42,12 +43,12 @@ public class PostController {
     @PostMapping ("/submit")
     public String addNewPost (@RequestParam String title, @RequestParam URL url) {
         this.postService.savePost(title, url);
-    return "redirect:/";
+    return "redirect:/1";
     }
 
     @PostMapping ("/vote")
-    public String addVote (@RequestParam char plus, @RequestParam Long id) {
+    public String addVote (@RequestParam char plus, @RequestParam Long id, @RequestParam Integer page) {
         this.postService.addVote(plus,id);
-        return "redirect:/";
+        return "redirect:/"+page;
     }
 }
