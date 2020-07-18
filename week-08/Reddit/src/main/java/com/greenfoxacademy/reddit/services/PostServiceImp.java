@@ -1,11 +1,10 @@
 package com.greenfoxacademy.reddit.services;
 
 import com.greenfoxacademy.reddit.models.Post;
-import com.greenfoxacademy.reddit.repostiories.PostRepository;
+import com.greenfoxacademy.reddit.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;

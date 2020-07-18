@@ -1,7 +1,6 @@
-package com.greenfoxacademy.reddit.repostiories;
+package com.greenfoxacademy.reddit.repositories;
 
 import com.greenfoxacademy.reddit.models.Post;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
