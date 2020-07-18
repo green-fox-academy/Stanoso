@@ -29,4 +29,6 @@ public interface TodoService {
 
     List<Todo> getByDone(boolean done);
 
+    void editByAssigneeId(Long assigneeId);
+
 }

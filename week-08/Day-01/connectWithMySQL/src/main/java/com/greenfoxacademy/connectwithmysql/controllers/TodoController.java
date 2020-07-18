@@ -49,11 +49,12 @@ public class TodoController {
     public String addNewTodo(@RequestParam String newtodo, @RequestParam String description, @RequestParam boolean urgent, Model model,
                              @RequestParam String assignee, @RequestParam String choose, @RequestParam String name, @RequestParam String email) {
         if (choose.equals("1")) {
+            if (email == "") {
+                email = "email not set";
+            }
             if (this.assigneeService.checkAssigneeExists(name,email)) {
                 model.addAttribute("exists", "Assignee with this e-mail already exists. Please set different e-mail or name");
-                return "addAssignee";
-//            } else if (email == null) {
-//                email = " ";
+                return "redirect:/todo/add";
             }
             this.assigneeService.addAssignee(name,email);
             String nameEmail = name + ", "+email;

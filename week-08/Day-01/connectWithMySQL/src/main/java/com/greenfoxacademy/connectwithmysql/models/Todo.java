@@ -81,6 +81,17 @@ public class Todo {
         this.date = new Date();
     }
 
+    public Todo(long id, String title, String description, boolean urgent, boolean done, Date date, String finish, Assignee assignee) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.urgent = urgent;
+        this.done = done;
+        this.date = date;
+        this.finish = finish;
+        this.assignee = assignee;
+    }
+
     public long getId() {
         return id;
     }
@@ -140,4 +151,6 @@ public class Todo {
     public void setFinish(String finish) {
         this.finish = finish;
     }
+
+
 }

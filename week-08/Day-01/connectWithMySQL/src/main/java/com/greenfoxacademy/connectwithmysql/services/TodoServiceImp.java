@@ -67,4 +67,9 @@ public class TodoServiceImp implements TodoService {
     public List<Todo> getByDone(boolean done) {
         return this.todoRepository.getByDone(done);
     }
+
+    @Override
+    public void editByAssigneeId(Long assigneeId) {
+        this.todoRepository.deleteForeignKey(assigneeId);
+    }
 }

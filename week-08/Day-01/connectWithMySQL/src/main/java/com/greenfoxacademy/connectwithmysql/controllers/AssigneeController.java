@@ -4,6 +4,7 @@ import com.greenfoxacademy.connectwithmysql.models.Assignee;
 import com.greenfoxacademy.connectwithmysql.models.Todo;
 import com.greenfoxacademy.connectwithmysql.repositories.AssigneeRepository;
 import com.greenfoxacademy.connectwithmysql.services.AssigneeService;
+import com.greenfoxacademy.connectwithmysql.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ public class AssigneeController {
     public AssigneeController(AssigneeService assigneeService) {
         this.assigneeService = assigneeService;
     }
+
+    @Autowired
+    public TodoService todoService;
 
     @GetMapping("/list-assignees")
     public String listAssignees(Model model) {
@@ -51,6 +55,7 @@ public class AssigneeController {
 
     @GetMapping("/{assigneeId}/deleteAssignee")
     public String deleteAssignee(@PathVariable Long assigneeId) {
+        this.todoService.editByAssigneeId(assigneeId);
         this.assigneeService.deleteAssigneeById(assigneeId);
         return "redirect:/list-assignees";
     }
