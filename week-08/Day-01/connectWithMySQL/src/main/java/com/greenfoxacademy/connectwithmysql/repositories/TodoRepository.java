@@ -23,7 +23,7 @@ public interface TodoRepository extends CrudRepository <Todo, Long> {
     @Transactional
     @Modifying
     @Query
-    ("UPDATE Todo c SET c.assignee=null WHERE c.assignee.id=:id")
+    ("UPDATE Todo c SET c.  assignee=null WHERE c.assignee.id=:id")
     void deleteForeignKey(Long id);
 
 }

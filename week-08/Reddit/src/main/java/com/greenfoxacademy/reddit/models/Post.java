@@ -18,7 +18,7 @@ public class Post {
 
     public Post () {}
 
-    public Post(URL url, String title) {
+    public Post(String title, URL url) {
         this.url = url;
         this.title = title;
         this.score = 0;
