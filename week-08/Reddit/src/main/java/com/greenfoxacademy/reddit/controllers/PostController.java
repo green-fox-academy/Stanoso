@@ -4,9 +4,11 @@ import com.greenfoxacademy.reddit.services.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.websocket.server.PathParam;
 import java.net.URL;
 
 @Controller
@@ -18,9 +20,17 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("posts", this.postService.findAllPosts());
+    @GetMapping(value = {"/", "/{page}"})
+    public String index(Model model, @PathVariable (required = false) Integer page) {
+        if (page == null) {
+            page = 1;
+        }
+        Integer totalPages = this.postService.getTotalNumberOfPages();
+        if (page > totalPages) {
+            page = totalPages;
+        }
+        model.addAttribute("posts", this.postService.getListOfPostsForPageNumber(page));
+        model.addAttribute("totalPages",this.postService.getListOfPageNumbers(totalPages));
         return "home";
     }
 
@@ -37,7 +47,7 @@ public class PostController {
 
     @PostMapping ("/vote")
     public String addVote (@RequestParam char plus, @RequestParam Long id) {
-        this.postService.addVote(id, plus);
+        this.postService.addVote(plus,id);
         return "redirect:/";
     }
 }

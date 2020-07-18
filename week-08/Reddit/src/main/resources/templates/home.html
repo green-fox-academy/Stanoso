@@ -17,10 +17,19 @@
             <td><input type="submit" name="minus" value="-"></td>
             <input type="hidden" name="minus" value="+">
             <input type="hidden" name="id" th:value="${post.id}">
-
+            <input type="hidden" name="title" th:value="${post.title}">
+            <input type="hidden" name="url" th:value="${post.url}">
+            <input type="hidden" name="score" th:value="${post.score}">
         </form>
         <td><a th:href="${post.url}" th:text="${post.title}" target="_blank"></a></td>
     </tr>
 </table>
+
+
+<span th:each="page : ${totalPages}">
+   <a th:href="@{|/${page}|}" th:text="${page}" > </a>
+</span>
+
+
 </body>
 </html>

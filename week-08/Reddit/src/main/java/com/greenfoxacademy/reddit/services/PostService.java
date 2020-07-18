@@ -11,7 +11,10 @@ public interface PostService {
 
     void savePost(String title, URL url);
     List<Post> findAllPosts();
-    void addVote(Long id, char plus);
+    void addVote(char plus, Long id);
+    Integer getTotalNumberOfPages();
+    List<Post> getListOfPostsForPageNumber(int page);
+    List<Integer> getListOfPageNumbers(Integer totalPages);
 
 
 }

@@ -24,6 +24,13 @@ public class Post {
         this.score = 0;
     }
 
+    public Post(Long id, int score, URL url, String title) {
+        this.id = id;
+        this.score = score;
+        this.url = url;
+        this.title = title;
+    }
+
     public Long getId() {
         return id;
     }

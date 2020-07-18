@@ -9,11 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends CrudRepository<Post, Long> {
 
-    @Query("UPDATE Post c SET c.score=+1 WHERE c.id=:id")
-    void increaseScore(Long id);
 
-//    @Query
-//            ("UPDATE posts c SET c.score=-1 WHERE id=:id")
-//    void decreaseScore(Long id);
 
 }
