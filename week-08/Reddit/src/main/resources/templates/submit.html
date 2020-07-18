@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit</title>
-    <link rel="stylesheet" href="style.css">
+    <link type="text/css" rel="stylesheet" href="../static/style.css" >
+    <link type="text/css" rel="stylesheet" href="/style.css" >
+
 </head>
 <body style="text-align: center">
 <h2>Submit a new post</h2>
 <form th:action="@{/submit}" th:method="POST">
     <label for="title">Title: </label>
-    <input id="title" type="text" autofocus name="title"> <br>
+    <input id="title" type="text" autofocus name="title" required> <br>
     <label for="url">URL: </label>
-    <input id="url" type="url" name="url"><br>
+    <input id="url" type="url" name="url" required><br>
     <input type="submit" value="Submit">
 </form>
 
