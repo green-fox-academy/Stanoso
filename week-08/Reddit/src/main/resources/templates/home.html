@@ -12,11 +12,13 @@
 
 <div style="clear: both; margin-left: 45px; padding-right: 45px; padding-top: 30px; padding-bottom: 50px;">
     <a href="/submit"> <h4 style="float: left">Submit a new post </h4> </a>
-    <a href="/login"> <h4 style="float: right">Login</h4> </a>
+    <a th:href="@{|/${log}|}"> <h4 th:text="${log}" style="float: right"></h4> </a>
+    <h4 style="float: right"> &nbsp; </h4>
+    <h4 style="float: right" th:text="${currentUser}"> </h4>
 </div>
 
 <div style="text-align: center; margin-right: 45px; padding-bottom: 20px">
-<h2 >Trending posts </h2>
+    <h2 >Trending posts </h2>
 </div>
 
 <table class="table table-borderless" style="text-align: left">

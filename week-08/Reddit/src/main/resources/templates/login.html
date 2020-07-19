@@ -8,13 +8,16 @@
 </head>
 <body style="text-align: center">
 <h2>Log in:</h2>
-<form th:action="@{/login}" th:method="POST">
+<form th:action="@{/Login}" th:method="POST">
     <label for="username">User name: </label>
-    <input style="margin-bottom: 20px" id="username" type="text" autofocus name="username" required> <br>
+    <input style="margin-bottom: 20px" id="username" type="text" autofocus name="userName" required> <br>
     <label for="pass">Password: </label>
     <input style="margin-bottom: 20px" id="pass" type="password" name="password" required><br>
     <input type="submit" value="Login">
 </form>
+<div style="padding-top: 50px">
+    <a href="/sign-in"> Create a new account </a>
+</div>
 
 </body>
 </html>

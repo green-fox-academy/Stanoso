@@ -20,8 +20,8 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping(value = {"/", "/{page}"})
-    public String index(Model model, @PathVariable (required = false) Integer page) {
+    @GetMapping(value = {"/", "/{page}/{user}", "/{page}", "/Logout"})
+    public String index(Model model, @PathVariable(required = false) Integer page, @PathVariable(required = false) String user) {
         if (page == null) {
             page = 1;
         }
@@ -29,9 +29,17 @@ public class PostController {
         if (page > totalPages) {
             page = totalPages;
         }
+        String log = "";
+        if (user == null) {
+            log = "Login";
+        } else {
+            log = "Logout";
+        }
+        model.addAttribute("log", log);
+        model.addAttribute("currentUser", user);
         model.addAttribute("posts", this.postService.getListOfPostsForPageNumber(page));
-        model.addAttribute("totalPages",this.postService.getListOfPageNumbers(totalPages));
-        model.addAttribute("page",page);
+        model.addAttribute("totalPages", this.postService.getListOfPageNumbers(totalPages));
+        model.addAttribute("page", page);
         return "home";
     }
 
@@ -40,15 +48,15 @@ public class PostController {
         return "submit";
     }
 
-    @PostMapping ("/submit")
-    public String addNewPost (@RequestParam String title, @RequestParam URL url) {
+    @PostMapping("/submit")
+    public String addNewPost(@RequestParam String title, @RequestParam URL url) {
         this.postService.savePost(title, url);
-    return "redirect:/1";
+        return "redirect:/1";
     }
 
-    @PostMapping ("/vote")
-    public String addVote (@RequestParam char plus, @RequestParam Long id, @RequestParam Integer page) {
-        this.postService.addVote(plus,id);
-        return "redirect:/"+page;
+    @PostMapping("/vote")
+    public String addVote(@RequestParam char plus, @RequestParam Long id, @RequestParam Integer page) {
+        this.postService.addVote(plus, id);
+        return "redirect:/" + page;
     }
 }

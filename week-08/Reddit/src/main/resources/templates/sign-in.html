@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign-in</title>
+    <link type="text/css" rel="stylesheet" href="../static/style.css" >
+
+</head>
+<body style="text-align: center">
+<h2>Create a new account:</h2>
+<form th:action="@{/sign-in}" th:method="POST">
+    <label for="username">User name: </label>
+    <input style="margin-bottom: 20px" id="username" type="text" autofocus name="newUser" required th:value="${currentUser}"> <br>
+    <label for="pass1">Password: </label>
+    <input style="margin-bottom: 20px" id="pass1" type="password" name="password1" required><br>
+    <label for="pass2">Password: </label>
+    <input style="margin-bottom: 20px" id="pass2" type="password" name="password2" required><br>
+    <input type="submit" value="Save">
+</form>
+
+<h5 th:text="${userExists}"></h5>
+<h5 th:text="${passwordMatch}"></h5>
+
+
+<div style="padding-top: 50px">
+    <a href="/1"> Back to homepage </a>
+</div>
+
+</body>
+</html>
