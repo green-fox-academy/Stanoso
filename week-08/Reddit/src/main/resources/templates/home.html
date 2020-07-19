@@ -51,6 +51,7 @@
             <input type="hidden" name="minus" value="+">
             <input type="hidden" name="id" th:value="${post.id}">
             <input type="hidden" name="page" th:value="${page}">
+
         </form>
         <td><a th:href="${post.url}" th:text="${post.title}" target="_blank"></a></td>
     </tr>
@@ -60,7 +61,7 @@
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <span th:each="page : ${totalPages}">
-              <li class="page-item"><a class="page-link" th:href="@{|/${page}|}" th:text="${page}"></a></li>
+              <li class="page-item"><a class="page-link" th:href="@{|/${page}/${currentUser}|}" th:text="${page}"></a></li>
         </span>
     </ul>
 </nav>

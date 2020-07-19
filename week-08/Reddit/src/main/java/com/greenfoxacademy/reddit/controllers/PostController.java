@@ -32,6 +32,7 @@ public class PostController {
         String log = "";
         if (user == null) {
             log = "Login";
+            user="";
         } else {
             log = "Logout";
         }
