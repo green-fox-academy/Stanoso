@@ -141,4 +141,20 @@ public class ExcerciseService {
         }
         return new Translate(textToTranslate, "teve");
     }
+
+    public Translate translateToGibberish(Translate text) {
+        String textToTranslate = text.getText();
+        String translated = "";
+        Random random = new Random();
+        for (int i = 0; i < textToTranslate.length() ; i++) {
+            if (Character.toString(textToTranslate.charAt(i)).matches("[.!?_-]") || textToTranslate.charAt(i)==' ') {
+                translated = translated+String.valueOf(textToTranslate.charAt(i));
+            } else if (Character.isUpperCase(textToTranslate.charAt(i))) {
+                translated = translated+String.valueOf((char) (random.nextInt(25)+97)).toUpperCase();
+            } else {
+                translated = translated+String.valueOf((char) (random.nextInt(25)+97));
+            }
+        }
+        return new Translate(translated,"gibberish");
+    }
 }

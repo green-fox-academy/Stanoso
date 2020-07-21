@@ -125,7 +125,11 @@ public class ExcerciseController {
         if (translate == null) {
             return new ResponseEntity<>(new ErrorObj("I can't translate that!"), HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(this.excerciseService.translateToTeve(translate), HttpStatus.OK);
+        if (translate.getLang().equals("hu")) {
+            return new ResponseEntity<>(this.excerciseService.translateToTeve(translate), HttpStatus.OK);
+        }
+            return new ResponseEntity<>(this.excerciseService.translateToGibberish(translate), HttpStatus.OK);
+
     }
 
 
