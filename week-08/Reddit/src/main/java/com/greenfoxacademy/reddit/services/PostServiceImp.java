@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class PostServiceImp implements PostService {
 
+    int postsPerPage = 10;
+
     PostRepository postRepository;
 
     @Autowired
@@ -48,16 +50,17 @@ public class PostServiceImp implements PostService {
     @Override
     public Integer getTotalNumberOfPages() {
         int totalPosts = (int) this.findAllPosts().stream().count();
-        if (totalPosts % 10 > 0) {
-            return totalPosts / 10 + 1;
+
+        if (totalPosts % postsPerPage > 0) {
+            return totalPosts / postsPerPage + 1;
         } else {
-            return totalPosts / 10;
+            return totalPosts / postsPerPage;
         }
     }
 
     @Override
     public List<Post> getListOfPostsForPageNumber(int page) {
-        return this.findAllPosts().stream().skip((page - 1) * 10).limit(page * 10).collect(Collectors.toList());
+        return this.findAllPosts().stream().skip((page - 1) * postsPerPage).limit(postsPerPage).collect(Collectors.toList());
     }
 
     @Override

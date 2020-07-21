@@ -29,6 +29,7 @@
         <th style="text-align: center">Vote</th>
         <th>Post title</th>
         <th>Author</th>
+        <th>Created</th>
     </tr>
     </thead>
     <tr th:each="post : ${posts}">
@@ -54,6 +55,8 @@
 
         </form>
         <td><a th:href="${post.url}" th:text="${post.title}" target="_blank"></a></td>
+        <td th:text="${post.created}"> </td>
+
     </tr>
 </table>
 

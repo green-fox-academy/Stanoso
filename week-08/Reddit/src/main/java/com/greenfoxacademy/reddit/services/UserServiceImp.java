@@ -33,5 +33,11 @@ public class UserServiceImp implements UserService {
         this.userRepository.save(new User(newUser, password1));
     }
 
+    @Override
+    public boolean checkLoginOK(String userName, String password) {
+        User logged = this.userRepository.findByUserNameAndPassword(userName, password);
+        return (logged != null);
+    }
+
 
 }

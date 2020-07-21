@@ -27,7 +27,11 @@ public class UserController {
     @PostMapping("/Login")
     public String logOrCreateUser(@RequestParam String userName, @RequestParam String password, Model model) {
         if (this.userService.checkIfUserExists(userName)) {
-            return "redirect:/1/"+userName;
+            if (this.userService.checkLoginOK(userName, password)) {
+                return "redirect:/1/" + userName;
+            }
+            model.addAttribute("error", "This User name and Password don´t match, try it again.");
+            return "login";
         }
         model.addAttribute("userName", userName);
         return "sign-in";

@@ -4,6 +4,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 import java.net.URL;
+import java.util.Date;
 
 @Entity
 @Table(name="posts")
@@ -15,13 +16,17 @@ public class Post {
     private int score;
     private URL url;
     private String title;
+    private Date created;
 
-    public Post () {}
+    public Post () {
+        this.created = new Date();
+    }
 
     public Post(String title, URL url) {
         this.url = url;
         this.title = title;
         this.score = 0;
+        this.created = new Date();
     }
 
     public Post(Long id, int score, URL url, String title) {
@@ -29,6 +34,7 @@ public class Post {
         this.score = score;
         this.url = url;
         this.title = title;
+        this.created = new Date();
     }
 
     public Long getId() {
@@ -61,5 +67,9 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Date getCreated() {
+        return created;
     }
 }

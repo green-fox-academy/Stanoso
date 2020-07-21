@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link type="text/css" rel="stylesheet" href="../static/style.css" >
+    <link th:href="@{/styles/css/style.css}" rel="stylesheet">
 
 </head>
 <body style="text-align: center">
 <h2>Log in:</h2>
 <form th:action="@{/Login}" th:method="POST">
     <label for="username">User name: </label>
-    <input style="margin-bottom: 20px" id="username" type="text" autofocus name="userName" required> <br>
+    <input id="username" type="text" autofocus name="userName" required> <br>
     <label for="pass">Password: </label>
-    <input style="margin-bottom: 20px" id="pass" type="password" name="password" required><br>
+    <input id="pass" type="password" name="password" required><br>
     <input type="submit" value="Login">
 </form>
+<h4 th:text="${error}"></h4>
 <div style="padding-top: 50px">
     <a href="/sign-in"> Create a new account </a>
 </div>
