@@ -3,6 +3,7 @@ package com.greenfoxacademy.rest.services;
 import com.greenfoxacademy.rest.modells.Entries;
 import com.greenfoxacademy.rest.modells.LogAll;
 import com.greenfoxacademy.rest.modells.SithTalk;
+import com.greenfoxacademy.rest.modells.Translate;
 import com.greenfoxacademy.rest.repositories.LogAllRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -120,9 +121,24 @@ public class ExcerciseService {
 
 
         }
-        if (result.charAt(result.length()-1) == ' ') {
+        if (result.charAt(result.length() - 1) == ' ') {
             result = result.substring(0, result.length() - 1);
         }
         return new SithTalk(text.getText(), result);
+    }
+
+    public Translate translateToTeve(Translate text) {
+        String textToTranslate = text.getText();
+        String input = "";
+        String part1 = "";
+        for (int i = 0; i < textToTranslate.length(); i++) {
+            if (Character.toString(textToTranslate.charAt(i)).matches("[AaÁáEeÉéOoÓóUuÚúŮůIiÍí]")) {
+                input = ("v" + String.valueOf(textToTranslate.charAt(i))).toLowerCase();
+                part1 = textToTranslate.substring(0, i+1);
+                textToTranslate = part1 + input + textToTranslate.substring(i + 1, textToTranslate.length());
+                i += 2;
+            }
+        }
+        return new Translate(textToTranslate, "teve");
     }
 }

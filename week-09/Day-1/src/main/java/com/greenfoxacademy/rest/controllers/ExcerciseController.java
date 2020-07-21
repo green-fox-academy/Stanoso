@@ -120,6 +120,14 @@ public class ExcerciseController {
         return new ResponseEntity<>(this.excerciseService.getTalkOfSith(text), HttpStatus.OK);
     }
 
+    @PostMapping ("/translate")
+    ResponseEntity<?> translateTo (@RequestBody (required = false) Translate translate) {
+        if (translate == null) {
+            return new ResponseEntity<>(new ErrorObj("I can't translate that!"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(this.excerciseService.translateToTeve(translate), HttpStatus.OK);
+    }
+
 
 
 }
