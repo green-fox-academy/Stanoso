@@ -11,7 +11,7 @@ public class LogAll {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
-    @Temporal(value = TemporalType.TIME)
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Date createdAt;
     private String data;
     private String endpoint;

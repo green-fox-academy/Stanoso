@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 public class ExcerciseController {
@@ -51,6 +48,8 @@ public class ExcerciseController {
             }
         }
         response.setStatus(HttpServletResponse.SC_OK);
+        LogAll newLog = new LogAll("/greeter", name+","+title);
+        this.excerciseService.save(newLog);
         return new ResponseEntity<>(new Message("Oh, hi there " + name + ", my dear " + title + "!"), HttpStatus.OK);
     }
 
@@ -70,11 +69,15 @@ public class ExcerciseController {
 
     @GetMapping("/appenda/{appendable}")
     Append appendA(@PathVariable String appendable) {
+        LogAll newLog = new LogAll("/aapenda/"+appendable, appendable);
+        this.excerciseService.save(newLog);
         return new Append(appendable);
     }
 
     @PostMapping("/dountil/{action}")
     Object doAction(@RequestBody(required = false) ActionResult ar, @PathVariable(required = false) String action) {
+        LogAll newLog = new LogAll("/dountil/"+action, "until="+String.valueOf(ar.getUntil()));
+        this.excerciseService.save(newLog);
         if (action.equals("sum")) {
             ar.setResult(this.excerciseService.sum(ar.getUntil()));
             return ar;
@@ -99,8 +102,24 @@ public class ExcerciseController {
         } else if (ah.getWhat().equals("double")) {
             ah.setResult(this.excerciseService.doubleArray(ah.getNumbers()));
         }
+        LogAll newLog = new LogAll("/arrays", "what="+ah.getWhat()+", numbers="+ Arrays.toString(ah.getNumbers()));
+        this.excerciseService.save(newLog);
         return ah;
     }
+
+    @GetMapping ("log")
+    Entries showEntries () {
+        return this.excerciseService.getEntries();
+    }
+
+    @PostMapping ("/sith")
+    ResponseEntity<?> yodaTalk (@RequestBody (required = false) SithTalk text) {
+        if (text == null) {
+            return new ResponseEntity<>(new ErrorObj("Feed me some text you have to, padawan young you are. Hmmm."), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(this.excerciseService.getTalkOfSith(text), HttpStatus.OK);
+    }
+
 
 
 }

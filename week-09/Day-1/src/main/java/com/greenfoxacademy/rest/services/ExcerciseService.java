@@ -1,12 +1,17 @@
 package com.greenfoxacademy.rest.services;
 
+import com.greenfoxacademy.rest.modells.Entries;
 import com.greenfoxacademy.rest.modells.LogAll;
+import com.greenfoxacademy.rest.modells.SithTalk;
 import com.greenfoxacademy.rest.repositories.LogAllRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 @Component
 public class ExcerciseService {
@@ -14,47 +19,47 @@ public class ExcerciseService {
     LogAllRepository logAllRepository;
 
     @Autowired
-    public ExcerciseService (LogAllRepository logAllRepository) {
+    public ExcerciseService(LogAllRepository logAllRepository) {
         this.logAllRepository = logAllRepository;
     }
 
-    public int sum (int until) {
+    public int sum(int until) {
         int sum = 0;
-        for (int i = 0; i < until+1 ; i++) {
+        for (int i = 0; i < until + 1; i++) {
             sum += i;
         }
-        return  sum;
+        return sum;
     }
 
-    public int factor (int until) {
+    public int factor(int until) {
         int factor = 1;
-        for (int i = 1; i < until+1 ; i++) {
+        for (int i = 1; i < until + 1; i++) {
             factor *= i;
         }
-        return  factor;
+        return factor;
     }
 
-    public int sumArray ( Integer[] inputArray) {
+    public int sumArray(Integer[] inputArray) {
         int sum = 0;
         for (Integer a : inputArray) {
-            sum+=a;
+            sum += a;
         }
         return sum;
     }
 
-    public int multiplyArray ( Integer[] inputArray) {
+    public int multiplyArray(Integer[] inputArray) {
         int sum = 1;
         for (Integer a : inputArray) {
-            sum=sum*a;
+            sum = sum * a;
         }
         return sum;
     }
 
-    public Integer[] doubleArray (Integer[] inputArray) {
+    public Integer[] doubleArray(Integer[] inputArray) {
         Integer[] result = new Integer[inputArray.length];
         int counter = 0;
-        for (Integer a: inputArray) {
-            result[counter] = a*2;
+        for (Integer a : inputArray) {
+            result[counter] = a * 2;
             counter++;
         }
         return result;
@@ -62,5 +67,62 @@ public class ExcerciseService {
 
     public void save(LogAll newLog) {
         this.logAllRepository.save(newLog);
+    }
+
+    public Entries getEntries() {
+        List<LogAll> listOdLogs = (List<LogAll>) this.logAllRepository.findAll();
+        LogAll[] allLogs = new LogAll[listOdLogs.size()];
+        listOdLogs.toArray(allLogs);
+        return new Entries(allLogs, allLogs.length);
+    }
+
+    public SithTalk getTalkOfSith(SithTalk text) {
+        String result = "";
+        String[] randomWords = {"Mmmmm.", "Urgh.", "Errr.", "Uhm.", "Uff.", "Gasp."};
+        String[] sentences = text.getText().split("[.]");
+
+        for (String sentence : sentences) {
+            if (sentence.charAt(0) == ' ') {
+                sentence = sentence.substring(1, sentence.length());
+            }
+            String[] words = sentence.split(" ");
+            if (words.length > 1) {
+                words[0] = words[0].toLowerCase();
+                words[1] = String.valueOf(words[1].charAt(0)).toUpperCase() + words[1].substring(1);
+            }
+
+            for (int i = 0; i < words.length; i += 2) {
+                if (i + 1 != words.length) {
+                    String temp = words[i];
+                    words[i] = words[i + 1];
+                    words[i + 1] = temp;
+                }
+            }
+
+            words[words.length - 1] = words[words.length - 1] + ".";
+
+            for (String word : words) {
+                result = result + word + " ";
+            }
+            Random random = new Random();
+            int length = random.nextInt(10);
+            if (length % 2 == 0) {
+                length = 1;
+            } else {
+                length = 2;
+            }
+            String paste = "";
+            for (int i = 0; i < length; i++) {
+                paste = paste + randomWords[random.nextInt(randomWords.length)] + " ";
+            }
+            paste = paste.substring(0, paste.length() - 1);
+            result = result + paste + " ";
+
+
+        }
+        if (result.charAt(result.length()-1) == ' ') {
+            result = result.substring(0, result.length() - 1);
+        }
+        return new SithTalk(text.getText(), result);
     }
 }
