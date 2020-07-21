@@ -107,9 +107,15 @@ public class ExcerciseController {
         return ah;
     }
 
-    @GetMapping ("log")
-    Entries showEntries () {
-        return this.excerciseService.getEntries();
+    @GetMapping ("/log")
+    Entries showEntries (@RequestParam (required = false) Integer count, @RequestParam (required = false) Integer page) {
+        if (count == null) {
+            return this.excerciseService.getEntries();
+        }
+        if (page == null) {
+            return this.excerciseService.getCountEntries(count,1);
+        }
+        return this.excerciseService.getCountEntries(count,page);
     }
 
     @PostMapping ("/sith")

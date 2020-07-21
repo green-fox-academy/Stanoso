@@ -134,7 +134,7 @@ public class ExcerciseService {
         for (int i = 0; i < textToTranslate.length(); i++) {
             if (Character.toString(textToTranslate.charAt(i)).matches("[AaÁáEeÉéOoÓóUuÚúŮůIiÍí]")) {
                 input = ("v" + String.valueOf(textToTranslate.charAt(i))).toLowerCase();
-                part1 = textToTranslate.substring(0, i+1);
+                part1 = textToTranslate.substring(0, i + 1);
                 textToTranslate = part1 + input + textToTranslate.substring(i + 1, textToTranslate.length());
                 i += 2;
             }
@@ -146,15 +146,34 @@ public class ExcerciseService {
         String textToTranslate = text.getText();
         String translated = "";
         Random random = new Random();
-        for (int i = 0; i < textToTranslate.length() ; i++) {
-            if (Character.toString(textToTranslate.charAt(i)).matches("[.!?_-]") || textToTranslate.charAt(i)==' ') {
-                translated = translated+String.valueOf(textToTranslate.charAt(i));
+        for (int i = 0; i < textToTranslate.length(); i++) {
+            if (Character.toString(textToTranslate.charAt(i)).matches("[.!?_-]") || textToTranslate.charAt(i) == ' ') {
+                translated = translated + String.valueOf(textToTranslate.charAt(i));
             } else if (Character.isUpperCase(textToTranslate.charAt(i))) {
-                translated = translated+String.valueOf((char) (random.nextInt(25)+97)).toUpperCase();
+                translated = translated + String.valueOf((char) (random.nextInt(25) + 97)).toUpperCase();
             } else {
-                translated = translated+String.valueOf((char) (random.nextInt(25)+97));
+                translated = translated + String.valueOf((char) (random.nextInt(25) + 97));
             }
         }
-        return new Translate(translated,"gibberish");
+        return new Translate(translated, "gibberish");
     }
+
+    public Entries getCountEntries(Integer count, Integer page) {
+        List<LogAll> listOfLogs = (List<LogAll>) this.logAllRepository.findAll();
+        if (listOfLogs.size() <= count) {
+            return getEntries();
+        }
+        if (count * page <= listOfLogs.size()) {
+            listOfLogs = listOfLogs.subList(listOfLogs.size() - (count * page), listOfLogs.size());
+            listOfLogs = listOfLogs.subList(0,count);
+        } else {
+            listOfLogs = listOfLogs.subList(0,count);
+        }
+
+        LogAll[] allLogs = new LogAll[listOfLogs.size()];
+        listOfLogs.toArray(allLogs);
+        return new Entries(allLogs, allLogs.length);
+    }
+
+
 }
