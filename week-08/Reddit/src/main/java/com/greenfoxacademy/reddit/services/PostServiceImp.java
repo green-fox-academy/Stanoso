@@ -1,6 +1,7 @@
 package com.greenfoxacademy.reddit.services;
 
 import com.greenfoxacademy.reddit.models.Post;
+import com.greenfoxacademy.reddit.models.User;
 import com.greenfoxacademy.reddit.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,8 +26,9 @@ public class PostServiceImp implements PostService {
 
 
     @Override
-    public void savePost(String title, URL url) {
-        this.postRepository.save(new Post(title, url));
+    public void savePost(String title, URL url, User currenUser) {
+        //najít usera podle jména a uložit post s ním asi upravit metodu na User a ne String
+        this.postRepository.save(new Post(title, url, currenUser));
     }
 
     @Override

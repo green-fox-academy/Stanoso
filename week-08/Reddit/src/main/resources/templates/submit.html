@@ -3,11 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Submit</title>
-    <link rel="stylesheet" href="/style.css">
+    <link th:href="@{/styles/css/style.css}" rel="stylesheet">
 
 </head>
 <body style="text-align: center">
+<div style="clear: both; margin-left: 45px; padding-right: 45px; padding-top: 30px; padding-bottom: 50px;">
+    <a th:href="@{|/${log}|}"> <h4 th:text="${log}" style="float: right"></h4> </a>
+    <h4 style="float: right"> &nbsp; </h4>
+    <h4 style="float: right" th:text="${currentUser}"> </h4>
+</div>
+<!--U submitu dodělat, aby bylo vidět, že je někdo přihlášený nebo ne-->
+
 <h2>Submit a new post</h2>
+<h6>To submit a new post, you must be logged in.</h6>
 <form th:action="@{/submit}" th:method="POST">
     <label for="title">Title: </label>
     <input id="title" type="text" autofocus name="title" required> <br>
@@ -15,6 +23,6 @@
     <input id="url" type="url" name="url" required><br>
     <input type="submit" value="Submit">
 </form>
-
+<h5 th:text="${error}"></h5>
 </body>
 </html>

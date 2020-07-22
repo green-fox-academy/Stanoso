@@ -3,6 +3,7 @@ package com.greenfoxacademy.reddit.models;
 import sun.security.util.Password;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -13,6 +14,9 @@ public class User {
     private Long id;
     private String userName;
     private String password;
+
+    @OneToMany (mappedBy = "user")
+    private List<Post> postList;
 
     public User() {
     }

@@ -18,14 +18,19 @@ public class Post {
     private String title;
     private Date created;
 
+    @ManyToOne
+    @JoinColumn(name = "userId")
+    private User user;
+
     public Post () {
         this.created = new Date();
     }
 
-    public Post(String title, URL url) {
+    public Post(String title, URL url, User user) {
         this.url = url;
         this.title = title;
         this.score = 0;
+        this.user = user;
         this.created = new Date();
     }
 
@@ -34,7 +39,6 @@ public class Post {
         this.score = score;
         this.url = url;
         this.title = title;
-        this.created = new Date();
     }
 
     public Long getId() {

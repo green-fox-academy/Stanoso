@@ -1,5 +1,6 @@
 package com.greenfoxacademy.reddit.services;
 
+import com.greenfoxacademy.reddit.models.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,4 +14,6 @@ public interface UserService {
     void saveNewUser(String newUser, String password1);
 
     boolean checkLoginOK(String userName, String password);
+
+    User getByUserName(String currentUser);
 }

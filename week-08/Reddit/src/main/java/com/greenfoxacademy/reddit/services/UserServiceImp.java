@@ -39,5 +39,10 @@ public class UserServiceImp implements UserService {
         return (logged != null);
     }
 
+    @Override
+    public User getByUserName(String currentUser) {
+        return this.userRepository.getByUserName(currentUser);
+    }
+
 
 }
