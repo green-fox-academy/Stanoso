@@ -5,15 +5,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link th:href="@{/styles/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Home</title>
 </head>
 <body>
 <div class="container">
+
     <div class="row">
         &nbsp;
     </div>
+
     <div class="row ">
         <div class="col-3">
             <a href="/newpost"> add a new post </a>
@@ -21,11 +24,64 @@
         <div class="col-6">
 
         </div>
-
         <div class="col-3 col-end">
             <span th:text="${currentUserName}"></span>
             <a th:href="@{|/${log}|}" th:text="${log}"></a>
         </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-6 col-title">
+            <h3> Trending posts </h3>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-borderless">
+
+            <thead>
+            <tr>
+                <th style="text-align: right">Score</th>
+                <th style="text-align: center">Vote<span class="material-icons">north</span></th>
+                <th style="text-align: center">Vote<span class="material-icons">south</span></th>
+                <th>Post title</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+            </thead>
+
+            <tr th:each="post : ${posts}">
+
+                <td th:text="${post.score}" style="width: 10%; text-align: right"></td>
+
+                <form th:action="@{/vote}" method="post">
+
+                    <td style="width: 30px; text-align: center">
+                        <button style="background-color: transparent; border: none; outline: none" type="submit" name="plus" value="+">
+                            <span class="material-icons">add_circle_outline </span>
+                        </button>
+                    </td>
+                    <input type="hidden" name="plus" value="-">
+
+                    <td style="width: 30px; text-align: center">
+                        <button style="background-color: transparent; border: none; outline: none" type="submit"name="minus" value="-">
+                            <span class="material-icons">remove_circle_outline</span>
+                        </button>
+                    </td>
+                    <input type="hidden" name="minus" value="+">
+
+                    <input type="hidden" name="id" th:value="${post.id}">
+                    <input type="hidden" name="page" th:value="${page}">
+                    <input type="hidden" name="currentUser" th:value="${currentUser}">
+                </form>
+
+                <td><a th:href="${post.url}" th:text="${post.title}" target="_blank"></a></td>
+                <td th:text="${post.user.getUserName()}"></td>
+                <td th:text="${post.date}"></td>
+                <td th:text="${post.time}"></td>
+
+            </tr>
+        </table>
+
     </div>
 
 </div>
