@@ -49,7 +49,7 @@ public class PostController {
         return "home";
     }
 
-    @GetMapping("/submit")
+    @GetMapping("/submit/{currenUser}")
     public String submit() {
         return "submit";
     }

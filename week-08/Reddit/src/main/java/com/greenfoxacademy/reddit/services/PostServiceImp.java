@@ -62,6 +62,10 @@ public class PostServiceImp implements PostService {
 
     @Override
     public List<Post> getListOfPostsForPageNumber(int page) {
+        if (page<=0)
+        {
+            page = 1;
+        }
         return this.findAllPosts().stream().skip((page - 1) * postsPerPage).limit(postsPerPage).collect(Collectors.toList());
     }
 
