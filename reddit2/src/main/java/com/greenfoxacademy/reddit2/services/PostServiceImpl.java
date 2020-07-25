@@ -6,6 +6,9 @@ import com.greenfoxacademy.reddit2.repositories.PostRepository;
 import com.greenfoxacademy.reddit2.viewmodells.PostDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class PostServiceImpl implements PostService {
 
@@ -27,7 +30,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDTO covertPostToPostDTO(Post post) {
+    public PostDTO convertPostToPostDTO(Post post) {
         PostDTO postDTO = new PostDTO();
         postDTO.setTitle(post.getTitle());
         postDTO.setUrl(post.getUrl());
@@ -42,4 +45,22 @@ public class PostServiceImpl implements PostService {
         }
         return postDTO;
     }
+
+    @Override
+    public List<Post> getListOfPosts() {
+        List<Post> postList = (List<Post>) this.postRepository.findAll();
+        return postList;
+    }
+
+    @Override
+    public List<PostDTO> getListOfPostsDTO() {
+        List<Post> postList = getListOfPosts();
+        List<PostDTO> postDTOList = new ArrayList<>();
+        for (Post post : postList) {
+            postDTOList.add(convertPostToPostDTO(post));
+        }
+        return postDTOList;
+    }
+
+
 }
