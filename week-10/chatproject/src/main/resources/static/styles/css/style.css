@@ -1,0 +1,22 @@
+.center-col {
+    text-align: left;
+}
+
+.col-end {
+    text-align: right;
+   }
+
+.col-left {
+    text-align: left;
+}
+
+
+.col-title {
+    padding-bottom: 30px;
+    padding-top: 30px ;
+    text-align: center;
+}
+
+.counter {
+    text-align: center;
+}
