@@ -34,6 +34,21 @@
         </div>
     </div>
 
+
+    <form th:action="@{/}" th:method="POST">
+        <div class="row">
+            <div class="col-11">
+
+                <label for="message"> Your message:  </label>
+                <input class="form-control" id="message" type="text" autofocus name="message" required>
+
+            </div>
+            <div class="col-1 align-self-end ">
+                <button type="submit" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </form>
+
 </div>
 
 
