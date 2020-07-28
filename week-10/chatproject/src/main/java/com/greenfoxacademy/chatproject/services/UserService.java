@@ -17,4 +17,6 @@ public interface UserService {
     void logoutUser();
 
     String updateUser(String userName, String url);
+
+    String getApiKey();
 }

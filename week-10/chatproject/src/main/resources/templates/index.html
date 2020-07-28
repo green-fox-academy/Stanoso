@@ -28,27 +28,54 @@
             <a th:href="${update}" th:text="${update}"></a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <hr>
-        </div>
-    </div>
+<!--    <div class="row">-->
+<!--        <div class="col-12">-->
+<!--            <hr>-->
+<!--        </div>-->
+<!--    </div>-->
 
 
     <form th:action="@{/}" th:method="POST">
         <div class="row">
             <div class="col-11">
 
-                <label for="message"> Your message:  </label>
+                <label for="message"> Your message: </label>
                 <input class="form-control" id="message" type="text" autofocus name="message" required>
 
             </div>
-            <div class="col-1 align-self-end ">
+            <div class="col-1 align-self-end col-end ">
                 <button type="submit" class="btn btn-primary">Send</button>
             </div>
         </div>
     </form>
+    <div class="row">
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11">
+            <div class="row" th:each="myMessage : ${myMessages}">
+                <div class="col-1">
+                    <img th:src="${myMessage.avatarUrl}" style="width:40px;height:40px;">
+                </div>
+                <div class="col-10">
+                    <span th:text="${myMessage.channelId}"></span>
+                    <span th:text="${myMessage.userName}"></span>
+                    <span th:text="${myMessage.time}"></span>
+                    <span th:text="${myMessage.date}"></span> <br>
+                    <span th:text="${myMessage.content}"></span>
+                    <hr>
+                </div>
 
+            </div>
+        </div>
+        <div class="col-1 col-end">
+            <a href="/reload">
+                <button class="btn btn-primary">Reload</button>
+            </a>
+        </div>
+    </div>
 </div>
 
 

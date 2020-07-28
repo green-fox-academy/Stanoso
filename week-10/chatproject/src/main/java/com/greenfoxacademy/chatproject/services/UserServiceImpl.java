@@ -140,4 +140,9 @@ public class UserServiceImpl implements UserService {
             return result;
         }
     }
+
+    @Override
+    public String getApiKey() {
+        return this.user.getApiKey();
+    }
 }

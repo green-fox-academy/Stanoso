@@ -1,5 +1,6 @@
 package com.greenfoxacademy.chatproject.controllers;
 
+import com.greenfoxacademy.chatproject.services.MessageService;
 import com.greenfoxacademy.chatproject.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
 
     UserService userService;
+    MessageService messageService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, MessageService messageService) {
         this.userService = userService;
+        this.messageService = messageService;
     }
 
     @GetMapping (value = "/")
@@ -29,6 +32,7 @@ public class UserController {
             status[4] = "img/white.png";
         }
         model.addAttribute("avatarUrl",status[4]);
+        model.addAttribute("myMessages", this.messageService.getMyMessages());
         return "index";
     }
 
