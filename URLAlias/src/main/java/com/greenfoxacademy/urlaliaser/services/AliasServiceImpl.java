@@ -83,6 +83,7 @@ public class AliasServiceImpl implements AliasService {
         if (result.getId()!=id) {
             return new ResponseEntity<String>("Secret code doesn´t match with provided id!", HttpStatus.FORBIDDEN);
         }
+        this.aliasRepository.deleteById(id);
         return new ResponseEntity<String>("OK", HttpStatus.NO_CONTENT);
     }
 

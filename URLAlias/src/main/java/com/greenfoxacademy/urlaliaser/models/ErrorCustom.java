@@ -12,7 +12,5 @@ public class ErrorCustom {
         return error;
     }
 
-    public void setError(String error) {
-        this.error = error;
-    }
+
 }
