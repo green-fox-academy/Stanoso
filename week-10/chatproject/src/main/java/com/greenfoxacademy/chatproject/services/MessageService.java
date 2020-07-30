@@ -12,5 +12,5 @@ public interface MessageService {
 
     List <MessageDisplayDTO> getMyMessages();
 
-    void reloadAll();
+    String reloadAll();
 }

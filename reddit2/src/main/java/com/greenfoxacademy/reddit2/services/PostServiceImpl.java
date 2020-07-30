@@ -8,9 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class PostServiceImpl implements PostService {
+
+    int postsPerPage = 10;
 
     PostRepository postRepository;
     UserService userService;
@@ -32,13 +35,14 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDTO convertPostToPostDTO(Post post) {
         PostDTO postDTO = new PostDTO();
+        postDTO.setId(post.getId());
         postDTO.setTitle(post.getTitle());
         postDTO.setUrl(post.getUrl());
         postDTO.setDate(this.dateTimeFormatter.getDate(post.getCreated()));
         postDTO.setTime(this.dateTimeFormatter.getTime(post.getCreated()));
         postDTO.setScore(post.getScore());
         postDTO.setUserName(post.getUser().getUserName());
-        if (post.getVote()==null) {
+        if (post.getVote() == null) {
             postDTO.setTotalVotes(0);
         } else {
             postDTO.setTotalVotes(post.getVote().size());
@@ -60,6 +64,38 @@ public class PostServiceImpl implements PostService {
             postDTOList.add(convertPostToPostDTO(post));
         }
         return postDTOList;
+    }
+
+
+    @Override
+    public Integer getCurrentPage(Integer page, Integer totalPages) {
+        if (page == null || page <= 0) {
+            return 1;
+        }
+        if (page > totalPages) {
+            return totalPages;
+        }
+        return page;
+    }
+
+    @Override
+    public List<PostDTO> getListoOfPostsDTOForPageNumber(Integer currentPage) {
+        return this.getListOfPostsDTO().stream().skip((currentPage - 1) * postsPerPage).limit(postsPerPage).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Integer> getListOfPageNumbers() {
+        int total = (int) this.getListOfPosts().stream().count();
+        if (total % postsPerPage > 0) {
+            total = total / postsPerPage + 1;
+        } else {
+            total = total / postsPerPage;
+        }
+        List<Integer> listOfPageNumbers = new ArrayList<>();
+        for (int i = 0; i < total; i++) {
+            listOfPageNumbers.add(i + 1);
+        }
+        return listOfPageNumbers;
     }
 
 

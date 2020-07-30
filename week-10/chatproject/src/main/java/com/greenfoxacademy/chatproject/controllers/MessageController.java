@@ -17,18 +17,17 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @PostMapping (value = "/")
-    public String message (Model model, @RequestParam String message) {
+    @PostMapping(value = "/")
+    public String message(Model model, @RequestParam String message) {
         this.messageService.postMessage(message);
         return "redirect:/";
     }
 
-    @GetMapping (value = "reload")
-    public String reload () {
-        this.messageService.reloadAll();
+    @GetMapping(value = "reload")
+    public String reload(Model model) {
+        String result = this.messageService.reloadAll();
         return "redirect:/";
     }
-
 
 
 }

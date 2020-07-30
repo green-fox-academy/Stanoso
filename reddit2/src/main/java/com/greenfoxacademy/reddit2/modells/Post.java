@@ -22,6 +22,8 @@ public class Post {
     @JoinColumn (name="userId")
     private User user;
 
+    public Post () {}
+
     public Post (String title, String url, User user) {
         this.title = title;
         this.url = url;

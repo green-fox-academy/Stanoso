@@ -22,8 +22,18 @@ public class UserController {
     }
 
     @GetMapping (value = "/")
-    public String mainPage (Model model) {
+    public String mainPage (Model model, @RequestParam (required = false) String user) {
         String[] status = this.userService.getIndexPageStatuses();
+        if (user == null && this.userService.isUserLogged()==false) {
+            model.addAttribute("currentUser", null);
+            model.addAttribute("login", "login");
+            model.addAttribute("update", null);
+            model.addAttribute("newUser","register new user");
+            model.addAttribute("avatarUrl","img/white.png");
+            model.addAttribute("error", "You must be logged in to reload messages");
+            return "index";
+        }
+
         model.addAttribute("currentUser", status[0]);
         model.addAttribute("login", status[1]);
         model.addAttribute("update", status[2]);

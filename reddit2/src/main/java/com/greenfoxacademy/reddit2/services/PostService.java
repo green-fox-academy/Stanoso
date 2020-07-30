@@ -14,4 +14,7 @@ public interface PostService {
     PostDTO convertPostToPostDTO (Post post);
     List<Post> getListOfPosts();
     List<PostDTO> getListOfPostsDTO();
+    Integer getCurrentPage(Integer page, Integer totalPages);
+    List<PostDTO> getListoOfPostsDTOForPageNumber(Integer currentPage);
+    List<Integer> getListOfPageNumbers();
 }

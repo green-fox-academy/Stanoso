@@ -46,24 +46,27 @@
                 <th>Author</th>
                 <th>Date</th>
                 <th>Time</th>
+                <th>Total votes</th>
             </tr>
             </thead>
 
             <tr th:each="post : ${posts}">
 
-                <td th:text="${post.score}" style="width: 10%; text-align: right"></td>
+                <td th:text="${post.score}" style="width: 20px; text-align: right"></td>
 
                 <form th:action="@{/vote}" method="post">
 
                     <td style="width: 30px; text-align: center">
-                        <button style="background-color: transparent; border: none; outline: none" type="submit" name="plus" value="+">
+                        <button style="background-color: transparent; border: none; outline: none" type="submit"
+                                name="plus" value="+">
                             <span class="material-icons">add_circle_outline </span>
                         </button>
                     </td>
                     <input type="hidden" name="plus" value="-">
 
                     <td style="width: 30px; text-align: center">
-                        <button style="background-color: transparent; border: none; outline: none" type="submit"name="minus" value="-">
+                        <button style="background-color: transparent; border: none; outline: none" type="submit"
+                                name="minus" value="-">
                             <span class="material-icons">remove_circle_outline</span>
                         </button>
                     </td>
@@ -71,17 +74,36 @@
 
                     <input type="hidden" name="id" th:value="${post.id}">
                     <input type="hidden" name="page" th:value="${page}">
-                    <input type="hidden" name="currentUser" th:value="${currentUser}">
+
                 </form>
 
                 <td><a th:href="${post.url}" th:text="${post.title}" target="_blank"></a></td>
-                <td th:text="${post.user.getUserName()}"></td>
+                <td th:text="${post.userName}"></td>
                 <td th:text="${post.date}"></td>
                 <td th:text="${post.time}"></td>
+                <td th:text="${post.totalVotes}"></td>
 
             </tr>
         </table>
 
+    </div>
+    <div class="row justify-content-center">
+        <div class="col">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <span th:each="onepage : ${totalPages}">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{|/${onepage}|}" th:text="${onepage}"></a>
+                        </li>
+                    </span>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-3 counter">
+            <span th:text="|Page ${page} of ${totalPages.size()}|"></span>
+        </div>
     </div>
 
 </div>

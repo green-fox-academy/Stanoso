@@ -53,15 +53,14 @@ public class MessageServiceImpl implements MessageService {
         data.put("channelSecret", null);
         data.put("content", message);
         HttpHeaders headers = new HttpHeaders();
+        try {
         headers.add("apiKey", this.userService.getApiKey());
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(data, headers);
-
-        try {
             ResponseEntity<?> response = restTemplate.postForEntity(urlHeroku, requestEntity, MessageResponseDTO.class);
             reloadAll();
 
 
-        } catch (HttpServerErrorException e) {
+        } catch (NullPointerException n) {
 
         }
     }
@@ -72,29 +71,33 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void reloadAll() {
+    public String reloadAll() {
         RestTemplate restTemplate = new RestTemplate();
         String urlHeroku = "https://rascals-chat.herokuapp.com/api/channel/get-messages";
         Map<String, Object> data = new HashMap<>();
         data.put("channelId", null);
         data.put("channelSecret", null);
-        data.put("count", 100);
+        data.put("count", 200);
         HttpHeaders headers = new HttpHeaders();
+        try {
         headers.add("apiKey", this.userService.getApiKey());
         HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(data, headers);
 
-        try {
+
             ResponseEntity<?> response = restTemplate.postForEntity(urlHeroku, requestEntity, ChatResponseDTO.class);
             ChatResponseDTO chatResponseDTO = (ChatResponseDTO) response.getBody();
             listToPrint.clear();
             for (MessageResponseDTO mRDTO : chatResponseDTO.getMessages()) {
+                if (mRDTO.getAuthor().getAvatarUrl()==null) {
+                    mRDTO.getAuthor().setAvatarUrl("img/white.png");
+                }
                 listToPrint.add(setMessageDisplayDTO(mRDTO));
             }
+            return null;
 
 
-        } catch (
-                HttpServerErrorException e) {
-
+        } catch (NullPointerException n) {
+            return "You must be logged in.";
         }
 
 
