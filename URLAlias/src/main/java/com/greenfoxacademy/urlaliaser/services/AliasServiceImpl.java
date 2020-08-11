@@ -27,7 +27,6 @@ public class AliasServiceImpl implements AliasService {
     public ResponseEntity<?> addNewAlias(String alias, String url) {
         List<Alias> aliases = getAllAliases();
         Alias result = aliases.stream().filter(a -> a.getAlias().toLowerCase().equals(alias.toLowerCase())).findAny().orElse(null);
-
         int secretCode=0;
         boolean stop = true;
         while (stop) {
@@ -35,8 +34,6 @@ public class AliasServiceImpl implements AliasService {
             int finalSecretCode = secretCode;
             stop = (aliases.stream().anyMatch(c -> c.getSecretCode() == finalSecretCode));
         }
-
-
         if (result==null) {
             Alias newAlias = new Alias (alias,url,secretCode);
             this.aliasRepository.save(newAlias);

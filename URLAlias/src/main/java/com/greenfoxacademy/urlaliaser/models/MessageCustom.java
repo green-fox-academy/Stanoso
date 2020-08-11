@@ -12,5 +12,5 @@ public class MessageCustom {
         return message;
     }
 
-    
+
 }
