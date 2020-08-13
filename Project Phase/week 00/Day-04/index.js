@@ -115,3 +115,11 @@ var apps5 = new Vue({
     },
   },
 });
+
+var apps6 = new Vue ({
+el: '#app-s6',
+data: {
+    message: 'Good old west',
+},
+
+});
