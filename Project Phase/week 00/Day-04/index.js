@@ -111,15 +111,33 @@ var apps5 = new Vue({
   },
   methods: {
     reverseMessage: function () {
-      this.message = this.message.split("").reverse().join("")
+      this.message = this.message.split("").reverse().join("");
     },
   },
 });
 
-var apps6 = new Vue ({
-el: '#app-s6',
-data: {
-    message: 'Good old west',
-},
+var apps6 = new Vue({
+  el: "#app-s6",
+  data: {
+    message: "Good old west",
+  },
+});
 
+
+Vue.component ('todo-item', {
+    props: ['todo'],
+    template: '<li> {{todo.id + " (ID) " + todo.text}} </li>'
+})
+
+var apps7 = new Vue ({
+el: '#app-s7',
+data: {
+    shoppingList : [
+        {id: 0, text: 'Appricots'},
+        {id: 1, text: 'Peaches'},
+        {id: 2, text: 'Pears'},
+        {id: 3, text: 'Chilli peppers'},
+        {id: 4, text: 'Cucumbers'},
+    ]
+},
 });
