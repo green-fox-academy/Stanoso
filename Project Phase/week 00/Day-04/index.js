@@ -59,7 +59,7 @@
 //     props: ['todo'],
 //     template: '<li>{{ todo.text }}</li>'
 //   })
-  
+
 //   var app7 = new Vue({
 //     el: '#app-7',
 //     data: {
@@ -71,19 +71,26 @@
 //     }
 //   })
 
-  var apps1 = new Vue ({
-      el: "#app-s1",
-      data: {
-          message: "First try",
-      },
-  });
+var apps1 = new Vue({
+  el: "#app-s1",
+  data: {
+    message: "First try",
+  },
+});
 
-  var apps2 = new Vue ({
-      el: "#app-s2",
-      data:{
-        basictext: "Are you hovering over this text?", 
-        message: "Yes, I am hovering over the text",   
-      },
-  });
+var apps2 = new Vue({
+  el: "#app-s2",
+  data: {
+    basictext: "Are you hovering over this text?",
+    message: "Yes, I am hovering over the text",
+  },
+});
 
-  
+var apps3 = new Vue({
+    el: '#app-s3',
+    data: {
+        visible: false,
+    },
+});
+
+
