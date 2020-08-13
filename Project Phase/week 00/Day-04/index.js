@@ -123,21 +123,32 @@ var apps6 = new Vue({
   },
 });
 
+Vue.component("todo-item", {
+  props: ["todo"],
+  template: '<li> {{todo.id + " (ID) " + todo.text}} </li>',
+});
 
-Vue.component ('todo-item', {
-    props: ['todo'],
-    template: '<li> {{todo.id + " (ID) " + todo.text}} </li>'
-})
+var apps7 = new Vue({
+  el: "#app-s7",
+  data: {
+    shoppingList: [
+      { id: 0, text: "Appricots" },
+      { id: 1, text: "Peaches" },
+      { id: 2, text: "Pears" },
+      { id: 3, text: "Chilli peppers" },
+      { id: 4, text: "Cucumbers" },
+    ],
+  },
+});
 
-var apps7 = new Vue ({
-el: '#app-s7',
-data: {
-    shoppingList : [
-        {id: 0, text: 'Appricots'},
-        {id: 1, text: 'Peaches'},
-        {id: 2, text: 'Pears'},
-        {id: 3, text: 'Chilli peppers'},
-        {id: 4, text: 'Cucumbers'},
-    ]
-},
+var mess = {
+    message: 'Follow the command on the button',
+    dont: 'You dont follow rules! The world will explode in 10 minutes! Go and kiss your wife the last time.',
+}
+
+// Object.freeze(mess);
+
+var apps8 = new Vue({
+  el: "#app-s8",
+  data: mess,
 });
