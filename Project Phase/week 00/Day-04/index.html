@@ -92,6 +92,13 @@
       <button v-on:click="message = dont">Dont´t click me!</button>
     </div>
 
+    <div id="app-s9">
+        <label for="title">Title</label> <br>
+        <input v-model="title" id="title">
+        <button v-on:click="newTitle = title">Add</button>
+        <p v-if="visible">{{newTitle}}</p>
+    </div>
+
     <!-- <div id="app-7">
         <ol>
           

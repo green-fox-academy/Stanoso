@@ -142,13 +142,29 @@ var apps7 = new Vue({
 });
 
 var mess = {
-    message: 'Follow the command on the button',
-    dont: 'You dont follow rules! The world will explode in 10 minutes! Go and kiss your wife the last time.',
-}
+  message: "Follow the command on the button",
+  dont:
+    "You dont follow rules! The world will explode in 10 minutes! Go and kiss your wife the last time.",
+};
 
 // Object.freeze(mess);
 
 var apps8 = new Vue({
   el: "#app-s8",
   data: mess,
+});
+
+var apps9 = new Vue({
+  el: "#app-s9",
+  data: {
+    title: "",
+    newTitle: "",
+    visible: function () {
+      if (newTitle === "") {
+        this.visible = false;
+      } else {
+        this.visible = true;
+      }
+    },
+  },
 });
