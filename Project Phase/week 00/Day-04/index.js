@@ -87,21 +87,31 @@ var apps2 = new Vue({
 });
 
 var apps3 = new Vue({
-    el: '#app-s3',
-    data: {
-        visible: false,
-    },
+  el: "#app-s3",
+  data: {
+    visible: false,
+  },
 });
 
-var apps4 = new Vue ({
-el: '#app-s4',
-data: {
+var apps4 = new Vue({
+  el: "#app-s4",
+  data: {
     todos: [
-        {text: 'Learn using correct brackets'},
-        {text: 'Learn using correct tags'},
-        {text: 'Learn using commas where needed'}
-    ]
-},
+      { text: "Learn using correct brackets" },
+      { text: "Learn using correct tags" },
+      { text: "Learn using commas where needed" },
+    ],
+  },
 });
 
-
+var apps5 = new Vue({
+  el: "#app-s5",
+  data: {
+    message: "Hello how are you?",
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split("").reverse().join("")
+    },
+  },
+});
