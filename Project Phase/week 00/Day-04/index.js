@@ -93,4 +93,15 @@ var apps3 = new Vue({
     },
 });
 
+var apps4 = new Vue ({
+el: '#app-s4',
+data: {
+    todos: [
+        {text: 'Learn using correct brackets'},
+        {text: 'Learn using correct tags'},
+        {text: 'Learn using commas where needed'}
+    ]
+},
+});
+
 
