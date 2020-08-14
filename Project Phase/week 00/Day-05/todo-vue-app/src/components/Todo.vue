@@ -2,22 +2,44 @@
   <div>
     <h2>{{msg}}</h2>
     <ul>
-        <li> Todo A </li> 
-        <li> Todo B </li> 
-        <li> Todo C </li> 
-    </ul> 
+      <li v-for="todo in todos" :key="todo.title">{{todo.title}} {{todo.project}} {{todo.done}}</li>
+    </ul>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Todo',
+  name: "Todo",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+  data: function () {
+    return {todos};
+  },
+};
 
-
+let todos = [
+        {
+          title: "Todo A",
+          project: "Project A",
+          done: false,
+        },
+        {
+          title: "Todo B",
+          project: "Project B",
+          done: true,
+        },
+        {
+          title: "Todo C",
+          project: "Project C",
+          done: false,
+        },
+        {
+          title: "Todo D",
+          project: "Project D",
+          done: false,
+        },
+      ]
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -25,14 +47,15 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
+ /* ul {
+  list-style-type: disc;
   padding: 0;
 }
+
 li {
-  display: inline-block;
+  display: inline-block; 
   margin: 0 10px;
-}
+}  */
 a {
   color: #42b983;
 }
