@@ -49,11 +49,11 @@
         <form class="title-pad">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title"  />
+            <input type="text" class="form-control" id="title" />
           </div>
           <div class="form-group">
             <label for="project">Project</label>
-            <input type="text" class="form-control" id="project"  />
+            <input type="text" class="form-control" id="project" />
           </div>
         </form>
         <button
@@ -71,11 +71,7 @@ export default {
   name: "TodoItem",
   props: ["item"],
   data: function () {
-    if (this.visible) {
-      return { visible: false };
-    } else {
-      return { visible: true };
-    }
+    return { visible: true };
   },
 };
 </script>
