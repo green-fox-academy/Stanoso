@@ -3,7 +3,12 @@
     {{see}}
     <ul>
       <li v-for="todo in arrOfTodos" :key="todo.title">
-        <TodoItem v-bind:item="todo" v-on:itemToDelete="itemTo" />
+        <TodoItem
+          v-bind:item="todo"
+          v-on:itemToDelete="itemTo"
+          v-on:setDone="setTodoDone"
+          v-on:editTD="editTodo"
+        />
       </li>
     </ul>
     <CreateTodo v-on:todonew="addTodo" />
@@ -36,6 +41,18 @@ export default {
 
     addTodo: function (value) {
       this.arrOfTodos.push(value);
+    },
+
+    setTodoDone: function (value) {
+      const todoSetDone = this.arrOfTodos.indexOf(value);
+      this.arrOfTodos[todoSetDone].done = true;
+       this.see = value; 
+    },
+
+    editTodo: function (value1, value2) {
+        const todoEdit = this.arrOfTodos.indexOf(value1);
+      this.arrOfTodos[todoEdit] = value2;
+      this.see = this.arrOfTodos[todoEdit];  
     },
   },
 };

@@ -7,7 +7,7 @@
         </span>
         <p class="title-pad">{{item.project}}</p>
         <div class="right-align">
-          <button type="button" class="btn btn-link" v-on:click="itemToDel" >
+          <button type="button" class="btn btn-link" v-on:click="itemToDel">
             <svg
               width="1em"
               height="1em"
@@ -42,24 +42,29 @@
           </button>
         </div>
         <button v-if="item.done" type="button" class="btn btn-outline-success btn-block">Completed</button>
-        <button v-else type="button" class="btn btn-outline-danger btn-block">Parsing</button>
+        <button
+          v-else
+          type="button"
+          class="btn btn-outline-danger btn-block"
+          v-on:click="done"
+        >Parsing</button>
       </div>
 
       <div class="col-4 col-style" v-else>
         <form class="title-pad">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" v-bind="titlevalue" />
+            <input type="text" class="form-control" id="title" v-model="titleTodo" />
           </div>
           <div class="form-group">
             <label for="project">Project</label>
-            <input type="text" class="form-control" id="project" />
+            <input type="text" class="form-control" id="project" v-model="projectTodo" />
           </div>
         </form>
         <button
           type="button"
           class="btn btn-outline-primary btn-block"
-          v-on:click="visible=true"
+          v-on:click="editTodo"
         >Close X</button>
       </div>
     </div>
@@ -73,15 +78,41 @@ export default {
   data: function () {
     return {
       visible: true,
+      titleTodo: this.item.title,
+      projectTodo: this.item.project,
     };
   },
   methods: {
     itemToDel: function () {
       this.$emit("itemToDelete", this.item);
     },
+    done: function () {
+      this.$emit("setDone", this.item);
+    //   alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done);
+    },
+    editTodo: function () {
+      if (this.titleTodo === '') {
+        alert("Please set a title to edit Todo");
+      } else {
+        this.visible = true;
+        const newTD = {
+          title: this.titleTodo,
+          project: this.projectTodo,
+          done: this.item.done,
+        };
+        this.$emit("editTD", this.item, newTD);
+        // alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done + ', ' +
+        // newTD.title + ' ' + newTD.project + ' ' + newTD.done
+        // );
+      }
+    },
   },
 };
 </script>
+
+
+  
+
 
 <style>
 .cont-style {

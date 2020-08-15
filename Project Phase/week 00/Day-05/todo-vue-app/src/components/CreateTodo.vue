@@ -38,10 +38,18 @@ export default {
   },
   methods: {
     newTodo: function () {
-      const newTD = { title: this.titleTodo, project: this.projectTodo, done: false };
-      this.$emit("todonew", newTD);
-      this.titleTodo = null;
-      this.projectTodo = null;
+      if (this.titleTodo === null) {
+        alert("Please set a title to create new Todo");
+      } else {
+        const newTD = {
+          title: this.titleTodo,
+          project: this.projectTodo,
+          done: false,
+        };
+        this.$emit("todonew", newTD);
+        this.titleTodo = null;
+        this.projectTodo = null;
+      }
     },
   },
 };
