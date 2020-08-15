@@ -7,7 +7,7 @@
         </span>
         <p class="title-pad">{{item.project}}</p>
         <div class="right-align">
-          <button type="button" class="btn btn-link">
+          <button type="button" class="btn btn-link" v-on:click="itemToDel" >
             <svg
               width="1em"
               height="1em"
@@ -49,7 +49,7 @@
         <form class="title-pad">
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" />
+            <input type="text" class="form-control" id="title" v-bind="titlevalue" />
           </div>
           <div class="form-group">
             <label for="project">Project</label>
@@ -71,7 +71,14 @@ export default {
   name: "TodoItem",
   props: ["item"],
   data: function () {
-    return { visible: true };
+    return {
+      visible: true,
+    };
+  },
+  methods: {
+    itemToDel: function () {
+      this.$emit("itemToDelete", this.item);
+    },
   },
 };
 </script>

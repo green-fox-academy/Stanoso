@@ -1,23 +1,32 @@
 <template>
   <div>
-      
-    <ul>
+      <ul>
       <li v-for="todo in arrOfTodos" :key="todo.title">
-          <TodoItem v-bind:item="todo" />
-       </li>
+        <TodoItem v-bind:item="todo" v-on:itemToDelete="itemTo" />
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import TodoItem from './TodoItem.vue';
+import TodoItem from "./TodoItem.vue";
 
 export default {
   name: "TodoList",
-  props: ["arrOfTodos"],
+  props: {
+    arrOfTodos: Array,
+  },
+
   components: {
-    TodoItem
-}
+    TodoItem,
+  },
+  
+  methods: {
+    itemTo: function (value) {
+      this.arrOfTodos.splice(this.arrOfTodos.indexOf(value), 1);
+  
+    },
+  },
 };
 </script>
 
