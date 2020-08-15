@@ -46,13 +46,13 @@ export default {
     setTodoDone: function (value) {
       const todoSetDone = this.arrOfTodos.indexOf(value);
       this.arrOfTodos[todoSetDone].done = true;
-       this.see = value; 
+    //   this.see = value; 
     },
 
     editTodo: function (value1, value2) {
         const todoEdit = this.arrOfTodos.indexOf(value1);
       this.arrOfTodos[todoEdit] = value2;
-      this.see = this.arrOfTodos[todoEdit];  
+    //   this.see = this.arrOfTodos[todoEdit];  
     },
   },
 };

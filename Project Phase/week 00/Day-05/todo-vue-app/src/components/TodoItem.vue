@@ -60,6 +60,10 @@
             <label for="project">Project</label>
             <input type="text" class="form-control" id="project" v-model="projectTodo" />
           </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="check" v-model="doneTodo" />
+            <label class="form-check-label" for="check">ToDo done</label>
+          </div>
         </form>
         <button
           type="button"
@@ -80,6 +84,7 @@ export default {
       visible: true,
       titleTodo: this.item.title,
       projectTodo: this.item.project,
+      doneTodo: this.item.done,
     };
   },
   methods: {
@@ -88,17 +93,17 @@ export default {
     },
     done: function () {
       this.$emit("setDone", this.item);
-    //   alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done);
+      //   alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done);
     },
     editTodo: function () {
-      if (this.titleTodo === '') {
+      if (this.titleTodo === "") {
         alert("Please set a title to edit Todo");
       } else {
         this.visible = true;
         const newTD = {
           title: this.titleTodo,
           project: this.projectTodo,
-          done: this.item.done,
+          done: this.doneTodo,
         };
         this.$emit("editTD", this.item, newTD);
         // alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done + ', ' +
