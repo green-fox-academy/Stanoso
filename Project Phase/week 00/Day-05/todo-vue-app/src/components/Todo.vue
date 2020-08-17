@@ -1,17 +1,20 @@
 <template>
   <div>
     <b>{{msg}}</b>
-    <TodoList v-bind:arrOfTodos="todos" 
-              v-on:itemToDelete="deleteItem"
-              v-on:setItemDone='setDone'
-              v-on:itemToEdit='editItem'></TodoList>
-    <CreateTodo v-on:todonew="addTodo"  />
+    <TodoList
+      v-bind:arrOfTodos="todos"
+      v-on:itemToDelete="deleteItem"
+      v-on:setItemDone="setDone"
+      v-on:itemToEdit="editItem"
+      :key='componentKey'
+    ></TodoList>
+    <CreateTodo v-on:todonew="addTodo" />
   </div>
 </template>
 
 <script>
 import TodoList from "./TodoList.vue";
-import CreateTodo from './CreateTodo.vue'
+import CreateTodo from "./CreateTodo.vue";
 
 export default {
   name: "Todo",
@@ -19,28 +22,31 @@ export default {
     msg: String,
   },
   data: function () {
-    return { todos };
+    return { 
+      todos,
+      componentKey : 0, 
+      };
   },
   components: {
     TodoList,
     CreateTodo,
   },
-   methods : {
+  methods: {
     addTodo: function (value) {
       this.todos.push(value);
     },
-    deleteItem: function(value) {
+    deleteItem: function (value) {
       this.todos.splice(this.todos.indexOf(value), 1);
     },
-    setDone: function(value) {
+    setDone: function (value) {
       const todoSetDone = this.todos.indexOf(value);
       this.todos[todoSetDone].done = true;
+      this.componentKey +=1;
     },
-    editItem: function(value1, value2) {
+    editItem: function (value1, value2) {
       const todoEdit = this.todos.indexOf(value1);
       this.todos[todoEdit] = value2;
-      let al = this.todos[todoEdit];
-      alert(al.title + ' ' + al.project + ' ' + al.done);
+      this.componentKey +=1;
     },
   },
 };
