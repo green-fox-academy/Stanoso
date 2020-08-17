@@ -1,12 +1,17 @@
 <template>
   <div>
     <b>{{msg}}</b>
-    <TodoList v-bind:arrOfTodos="todos"></TodoList>
+    <TodoList v-bind:arrOfTodos="todos" 
+              v-on:itemToDelete="deleteItem"
+              v-on:setItemDone='setDone'
+              v-on:itemToEdit='editItem'></TodoList>
+    <CreateTodo v-on:todonew="addTodo"  />
   </div>
 </template>
 
 <script>
 import TodoList from "./TodoList.vue";
+import CreateTodo from './CreateTodo.vue'
 
 export default {
   name: "Todo",
@@ -18,6 +23,25 @@ export default {
   },
   components: {
     TodoList,
+    CreateTodo,
+  },
+   methods : {
+    addTodo: function (value) {
+      this.todos.push(value);
+    },
+    deleteItem: function(value) {
+      this.todos.splice(this.todos.indexOf(value), 1);
+    },
+    setDone: function(value) {
+      const todoSetDone = this.todos.indexOf(value);
+      this.todos[todoSetDone].done = true;
+    },
+    editItem: function(value1, value2) {
+      const todoEdit = this.todos.indexOf(value1);
+      this.todos[todoEdit] = value2;
+      let al = this.todos[todoEdit];
+      alert(al.title + ' ' + al.project + ' ' + al.done);
+    },
   },
 };
 

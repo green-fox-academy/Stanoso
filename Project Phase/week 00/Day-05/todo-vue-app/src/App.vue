@@ -4,17 +4,21 @@
     <b class="title">Welcome to ToDo app made using JS & Vue</b>
     <Todo msg='ToDo List' />    
     
+    
   </div>
 </template>
 
 <script>
 import Todo from './components/Todo.vue'
 
+
 export default {
   name: 'App',
   components: {
-    Todo
-  }
+    Todo,
+    
+  },
+ 
 }
 </script>
 

@@ -5,19 +5,17 @@
       <li v-for="todo in arrOfTodos" :key="todo.title">
         <TodoItem
           v-bind:item="todo"
-          v-on:itemToDelete="itemTo"
+          v-on:itemToDelete="itemToDel"
           v-on:setDone="setTodoDone"
           v-on:editTD="editTodo"
         />
       </li>
     </ul>
-    <CreateTodo v-on:todonew="addTodo" />
   </div>
 </template>
 
 <script>
 import TodoItem from "./TodoItem.vue";
-import CreateTodo from "./CreateTodo.vue";
 
 export default {
   name: "TodoList",
@@ -27,7 +25,6 @@ export default {
 
   components: {
     TodoItem,
-    CreateTodo,
   },
 
   data: function () {
@@ -35,24 +32,17 @@ export default {
   },
 
   methods: {
-    itemTo: function (value) {
-      this.arrOfTodos.splice(this.arrOfTodos.indexOf(value), 1);
-    },
-
-    addTodo: function (value) {
-      this.arrOfTodos.push(value);
+    itemToDel: function (value) {
+      this.$emit("itemToDelete", value);
     },
 
     setTodoDone: function (value) {
-      const todoSetDone = this.arrOfTodos.indexOf(value);
-      this.arrOfTodos[todoSetDone].done = true;
-    //   this.see = value; 
+      this.$emit("setItemDone", value);
+     
     },
 
     editTodo: function (value1, value2) {
-        const todoEdit = this.arrOfTodos.indexOf(value1);
-      this.arrOfTodos[todoEdit] = value2;
-    //   this.see = this.arrOfTodos[todoEdit];  
+      this.$emit("itemToEdit", value1, value2);
     },
   },
 };

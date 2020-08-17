@@ -65,11 +65,7 @@
             <label class="form-check-label" for="check">ToDo done</label>
           </div>
         </form>
-        <button
-          type="button"
-          class="btn btn-outline-primary btn-block"
-          v-on:click="editTodo"
-        >Close X</button>
+        <button class="btn btn-outline-primary btn-block" v-on:click="editTodo">Close X</button>
       </div>
     </div>
   </div>
@@ -93,7 +89,6 @@ export default {
     },
     done: function () {
       this.$emit("setDone", this.item);
-      //   alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done);
     },
     editTodo: function () {
       if (this.titleTodo === "") {
@@ -106,9 +101,6 @@ export default {
           done: this.doneTodo,
         };
         this.$emit("editTD", this.item, newTD);
-        // alert(this.item.title + ' ' + this.item.project + ' ' + this.item.done + ', ' +
-        // newTD.title + ' ' + newTD.project + ' ' + newTD.done
-        // );
       }
     },
   },

@@ -69,5 +69,6 @@ export default {
 .button-col-style {
   border-style: none;
   padding: 0px;
+  padding-bottom: 10px;
 }
 </style>
